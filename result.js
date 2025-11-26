@@ -1,12 +1,5 @@
-// OpenRouter API configuration
-const OPENROUTER_API_KEY = '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';
-const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
-
-// Available models
-const MODELS = {
-    grok: 'x-ai/grok-beta',
-    deepseek: 'deepseek/deepseek-r1-distill-llama-70b'
-};
+// API configuration - using backend proxy for security
+const API_ENDPOINT = '/api/generate';
 
 let currentModel = 'grok';
 let isGenerating = false;
@@ -145,56 +138,27 @@ function generatePost(topic) {
     }
 }
 
-// Generate post using OpenRouter API
+// Generate post using backend API (keeps API key secure)
 async function generateLinkedInPost(topic, model = 'grok') {
-    const systemPrompt = `You are an expert LinkedIn content creator. Generate engaging, professional LinkedIn posts that:
-- Start with a compelling hook
-- Use clear formatting with line breaks
-- Include relevant emojis sparingly
-- Have 3-5 key points with checkmarks (✅) or bullet points
-- End with a call-to-action or question
-- Include 5 relevant hashtags at the end
-- Keep it between 150-300 words
-- Sound authentic and conversational, not corporate
-- Focus on providing value and insights`;
-
-    const userPrompt = `Create a LinkedIn post about: ${topic}
-
-Make it engaging, actionable, and shareable. Format it properly with line breaks and structure.`;
-
     try {
-        const response = await fetch(OPENROUTER_API_URL, {
+        const response = await fetch(API_ENDPOINT, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
-                'Content-Type': 'application/json',
-                'HTTP-Referer': window.location.origin,
-                'X-Title': 'AI Social Media Post Generator'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                model: MODELS[model] || MODELS.grok,
-                messages: [
-                    {
-                        role: 'system',
-                        content: systemPrompt
-                    },
-                    {
-                        role: 'user',
-                        content: userPrompt
-                    }
-                ],
-                temperature: 0.8,
-                max_tokens: 1000
+                topic: topic,
+                model: model
             })
         });
 
         if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(`API request failed: ${response.status} - ${errorData.error?.message || 'Unknown error'}`);
+            throw new Error(`API request failed: ${response.status} - ${errorData.error || 'Unknown error'}`);
         }
 
         const data = await response.json();
-        return data.choices[0].message.content;
+        return data.content;
     } catch (error) {
         console.error('Error generating post:', error);
         throw error;

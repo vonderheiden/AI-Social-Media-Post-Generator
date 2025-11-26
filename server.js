@@ -1,14 +1,37 @@
-// OpenRouter API integration for LinkedIn post generation
-const OPENROUTER_API_KEY = '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';
-const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-// Available models
-const MODELS = {
-    grok: 'x-ai/grok-beta',
-    deepseek: 'deepseek/deepseek-r1-distill-llama-70b'
-};
+dotenv.config();
 
-async function generateLinkedInPost(topic, model = 'grok') {
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(cors());
+app.use(express.json());
+app.use(express.static('.'));
+
+// API endpoint for generating posts
+app.post('/api/generate', async (req, res) => {
+    const { topic, model = 'grok' } = req.body;
+
+    if (!topic) {
+        return res.status(400).json({ error: 'Topic is required' });
+    }
+
+    const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
+    const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
+
+    const MODELS = {
+        grok: 'x-ai/grok-beta',
+        deepseek: 'deepseek/deepseek-r1-distill-llama-70b'
+    };
+
     const systemPrompt = `You are an expert LinkedIn content creator. Generate engaging, professional LinkedIn posts that:
 - Start with a compelling hook
 - Use clear formatting with line breaks
@@ -30,7 +53,7 @@ Make it engaging, actionable, and shareable. Format it properly with line breaks
             headers: {
                 'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
                 'Content-Type': 'application/json',
-                'HTTP-Referer': window.location.origin,
+                'HTTP-Referer': req.headers.referer || 'https://ai-social-media-post-generator-tpwg.onrender.com',
                 'X-Title': 'AI Social Media Post Generator'
             },
             body: JSON.stringify({
@@ -51,16 +74,20 @@ Make it engaging, actionable, and shareable. Format it properly with line breaks
         });
 
         if (!response.ok) {
-            throw new Error(`API request failed: ${response.status}`);
+            const errorData = await response.json();
+            throw new Error(errorData.error?.message || 'OpenRouter API error');
         }
 
         const data = await response.json();
-        return data.choices[0].message.content;
-    } catch (error) {
-        console.error('Error generating post:', error);
-        throw error;
-    }
-}
+        const content = data.choices[0].message.content;
 
-// Export for use in other files
-window.generateLinkedInPost = generateLinkedInPost;
+        return res.status(200).json({ content });
+    } catch (error) {
+        console.error('Error:', error);
+        return res.status(500).json({ error: error.message });
+    }
+});
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
