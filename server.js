@@ -15,10 +15,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// Serve static files from the root directory
-app.use(express.static(__dirname));
-
-// API endpoint for generating posts
+// API endpoint for generating posts - MUST come before static files
 app.post('/api/generate', async (req, res) => {
     const { topic, model = 'grok' } = req.body;
 
@@ -90,12 +87,11 @@ Make it engaging, actionable, and shareable. Format it properly with line breaks
     }
 });
 
+// Serve static files from the root directory - MUST come after API routes
+app.use(express.static(__dirname));
+
 // Catch-all route to serve index.html for any non-API routes
 app.get('*', (req, res) => {
-    // Don't serve index.html for API routes
-    if (req.path.startsWith('/api/')) {
-        return res.status(404).json({ error: 'API endpoint not found' });
-    }
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
