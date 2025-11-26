@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Post - Social Media Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="generate.css">
+</head>
+<body class="generate-page">
+    <div class="generate-container">
+        <div class="left-panel">
+            <button class="back-btn" onclick="window.location.href='dashboard.html'">
+                ← Back
+            </button>
+            
+            <h1>Write your first post</h1>
+            
+            <p class="subtitle">All great posts start with a topic.</p>
+            
+            <p class="description">Our AI uses the topic to generate a post.</p>
+            
+            <p class="instruction">You can specify a topic for your post in 3 ways:</p>
+            
+            <ol class="methods-list">
+                <li>Write your own topic</li>
+                <li>Choose from suggestions</li>
+                <li>Get inspired by quotes</li>
+            </ol>
+            
+            <p class="cta">Give it a try!</p>
+        </div>
+        
+        <div class="right-panel">
+            <div class="card">
+                <div class="step-indicator">
+                    <div class="step active">
+                        <span class="step-number">✓</span>
+                        <span class="step-label">Topic</span>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <span class="step-label">Style</span>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <span class="step-label">Review</span>
+                    </div>
+                </div>
+
+                <form id="generateForm">
+                    <div class="input-section active" id="topicSection">
+                        <div class="section-header" onclick="toggleSection('topic')">
+                            <span class="icon">✏️</span>
+                            <span class="section-title">Write Your Own Topic</span>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="section-content">
+                            <textarea 
+                                id="topicInput" 
+                                placeholder="Enter a topic using 10-100 words"
+                                maxlength="500"
+                                rows="5"
+                            ></textarea>
+                            <div class="char-count">
+                                <span id="charCount">0</span>/500 characters
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-section" id="suggestionsSection">
+                        <div class="section-header" onclick="toggleSection('suggestions')">
+                            <span class="icon">💡</span>
+                            <span class="section-title">Choose a Suggested Topic</span>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="section-content" style="display: none;">
+                            <div class="suggestions-grid">
+                                <button type="button" class="suggestion-btn" onclick="selectSuggestion(this)">
+                                    Leadership in remote teams
+                                </button>
+                                <button type="button" class="suggestion-btn" onclick="selectSuggestion(this)">
+                                    Work-life balance tips
+                                </button>
+                                <button type="button" class="suggestion-btn" onclick="selectSuggestion(this)">
+                                    Career growth strategies
+                                </button>
+                                <button type="button" class="suggestion-btn" onclick="selectSuggestion(this)">
+                                    Innovation in tech
+                                </button>
+                                <button type="button" class="suggestion-btn" onclick="selectSuggestion(this)">
+                                    Building company culture
+                                </button>
+                                <button type="button" class="suggestion-btn" onclick="selectSuggestion(this)">
+                                    Personal branding
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-section" id="quoteSection">
+                        <div class="section-header" onclick="toggleSection('quote')">
+                            <span class="icon">💬</span>
+                            <span class="section-title">Get Inspired by a Quote</span>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="section-content" style="display: none;">
+                            <textarea 
+                                id="quoteInput" 
+                                placeholder="Enter an inspiring quote..."
+                                maxlength="500"
+                                rows="4"
+                            ></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-generate">Generate post</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+    <script src="generate.js"></script>
+</body>
+</html>
