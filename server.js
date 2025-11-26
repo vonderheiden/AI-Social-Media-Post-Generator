@@ -30,8 +30,8 @@ app.post('/api/generate', async (req, res) => {
     const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
 
     const MODELS = {
-        grok: 'x-ai/grok-beta',
-        deepseek: 'deepseek/deepseek-r1-distill-llama-70b'
+        grok: 'meta-llama/llama-3.3-70b-instruct:free',
+        deepseek: 'tngtech/tng-r1t-chimera:free'
     };
 
     const systemPrompt = `You are an expert LinkedIn content creator. Generate engaging, professional LinkedIn posts that:
