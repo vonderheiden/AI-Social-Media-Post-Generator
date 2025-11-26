@@ -14,7 +14,9 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static('.'));
+
+// Serve static files from the root directory
+app.use(express.static(__dirname));
 
 // API endpoint for generating posts
 app.post('/api/generate', async (req, res) => {
@@ -86,6 +88,15 @@ Make it engaging, actionable, and shareable. Format it properly with line breaks
         console.error('Error:', error);
         return res.status(500).json({ error: error.message });
     }
+});
+
+// Catch-all route to serve index.html for any non-API routes
+app.get('*', (req, res) => {
+    // Don't serve index.html for API routes
+    if (req.path.startsWith('/api/')) {
+        return res.status(404).json({ error: 'API endpoint not found' });
+    }
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.listen(PORT, () => {
