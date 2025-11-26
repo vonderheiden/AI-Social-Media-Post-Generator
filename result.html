@@ -5,28 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generated Post - Social Media Generator</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="result.css">
 </head>
-<body>
-    <div class="container">
-        <div class="card">
-            <h1>Your Post is Being Generated!</h1>
-            <p style="text-align: center; margin: 20px 0;">AI generation will be implemented next.</p>
-            <div id="topicDisplay" style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;"></div>
-            <button onclick="window.location.href='generate.html'" class="btn-primary">Create Another Post</button>
+<body class="result-page">
+    <div class="result-container">
+        <div class="left-panel">
+            <button class="back-btn" onclick="window.location.href='generate.html'">
+                ← Back
+            </button>
+            
+            <h1>Here's your AI-generated post</h1>
+            
+            <p class="subtitle">Not a fan of the first draft? No problem!</p>
+            
+            <p class="description">The power of AI rests in its ability to regenerate posts quickly using advanced language models.</p>
+            
+            <p class="instruction">Refine your topic, regenerate your post, and hone in on your target message.</p>
+            
+            <p class="cta">Give it a try!</p>
+            
+            <div class="action-buttons">
+                <button class="btn-secondary" onclick="window.location.href='generate.html'">
+                    🔄 Regenerate Post
+                </button>
+                <button class="btn-secondary" onclick="editPost()">
+                    ✏️ Edit Post
+                </button>
+            </div>
+        </div>
+        
+        <div class="right-panel">
+            <div class="linkedin-post">
+                <div class="post-header">
+                    <div class="avatar">
+                        <span class="avatar-initial">U</span>
+                    </div>
+                    <div class="post-meta">
+                        <div class="author-name">Your Name</div>
+                        <div class="post-time">Just now • 🌐</div>
+                    </div>
+                </div>
+                
+                <div class="post-content" id="postContent">
+                    <div class="post-title">🚀 <span id="postTitle">Loading...</span></div>
+                    <div class="post-body" id="postBody">Generating your post...</div>
+                </div>
+            </div>
+            
+            <button class="btn-continue" onclick="window.location.href='image.html'">
+                Continue to Image
+            </button>
         </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="app.js"></script>
-    <script>
-        const topic = localStorage.getItem('postTopic');
-        const type = localStorage.getItem('postType');
-        
-        if (topic) {
-            document.getElementById('topicDisplay').innerHTML = `
-                <strong>${type === 'quote' ? 'Quote' : 'Topic'}:</strong><br>
-                ${topic}
-            `;
-        }
-    </script>
+    <script src="result.js"></script>
 </body>
 </html>

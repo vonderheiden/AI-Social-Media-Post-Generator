@@ -1,0 +1,223 @@
+.result-page {
+    background: linear-gradient(135deg, #0277bd 0%, #01579b 100%);
+    min-height: 100vh;
+    padding: 0;
+    display: flex;
+}
+
+.result-container {
+    display: flex;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 60px;
+    padding: 40px;
+}
+
+.left-panel {
+    flex: 1;
+    color: white;
+    padding: 40px 20px;
+}
+
+.back-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 40px;
+    transition: background 0.3s;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.left-panel h1 {
+    font-size: 42px;
+    margin-bottom: 30px;
+    line-height: 1.2;
+}
+
+.subtitle {
+    font-size: 18px;
+    margin-bottom: 20px;
+    opacity: 0.95;
+}
+
+.description {
+    font-size: 16px;
+    margin-bottom: 25px;
+    opacity: 0.9;
+    line-height: 1.5;
+}
+
+.instruction {
+    font-size: 16px;
+    margin-bottom: 30px;
+    opacity: 0.9;
+    line-height: 1.5;
+}
+
+.cta {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 40px;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 300px;
+}
+
+.btn-secondary {
+    padding: 14px 24px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s;
+    text-align: left;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: translateX(4px);
+}
+
+.right-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.linkedin-post {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.post-header {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.avatar-initial {
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.post-meta {
+    flex: 1;
+}
+
+.author-name {
+    font-weight: 600;
+    font-size: 16px;
+    color: #1a1a1a;
+    margin-bottom: 2px;
+}
+
+.post-time {
+    font-size: 13px;
+    color: #666;
+}
+
+.post-content {
+    color: #1a1a1a;
+    line-height: 1.6;
+}
+
+.post-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #1a1a1a;
+}
+
+.post-body {
+    font-size: 15px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.post-body p {
+    margin-bottom: 12px;
+}
+
+.post-body strong {
+    font-weight: 600;
+    color: #0a66c2;
+}
+
+.post-body .checkmark {
+    color: #057642;
+    margin-right: 4px;
+}
+
+.post-body .hashtags {
+    color: #0a66c2;
+    margin-top: 16px;
+    display: block;
+}
+
+.btn-continue {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #42a5f5 0%, #1e88e5 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-continue:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(30, 136, 229, 0.4);
+}
+
+@media (max-width: 1024px) {
+    .result-container {
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    .left-panel h1 {
+        font-size: 32px;
+    }
+    
+    .linkedin-post {
+        max-height: none;
+    }
+}
