@@ -281,7 +281,7 @@ async function regeneratePost() {
     // Switch model
     currentModel = currentModel === 'grok' ? 'deepseek' : 'grok';
     
-    const modelName = currentModel === 'grok' ? 'Grok Beta' : 'DeepSeek R1';
+    const modelName = currentModel === 'grok' ? 'Llama 3.3 70B' : 'TNG R1T Chimera';
     document.getElementById('currentModelName').textContent = modelName;
     console.log(`Regenerating with ${modelName}...`);
     
