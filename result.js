@@ -1,4 +1,17 @@
-// Sample post templates based on common topics
+// OpenRouter API configuration
+const OPENROUTER_API_KEY = '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';
+const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
+
+// Available models
+const MODELS = {
+    grok: 'x-ai/grok-beta',
+    deepseek: 'deepseek/deepseek-r1-distill-llama-70b'
+};
+
+let currentModel = 'grok';
+let isGenerating = false;
+
+// Sample post templates as fallback
 const postTemplates = {
     'leadership': {
         title: 'The 3 Traits Every Great Leader Must Have',
@@ -132,8 +145,82 @@ function generatePost(topic) {
     }
 }
 
+// Generate post using OpenRouter API
+async function generateLinkedInPost(topic, model = 'grok') {
+    const systemPrompt = `You are an expert LinkedIn content creator. Generate engaging, professional LinkedIn posts that:
+- Start with a compelling hook
+- Use clear formatting with line breaks
+- Include relevant emojis sparingly
+- Have 3-5 key points with checkmarks (✅) or bullet points
+- End with a call-to-action or question
+- Include 5 relevant hashtags at the end
+- Keep it between 150-300 words
+- Sound authentic and conversational, not corporate
+- Focus on providing value and insights`;
+
+    const userPrompt = `Create a LinkedIn post about: ${topic}
+
+Make it engaging, actionable, and shareable. Format it properly with line breaks and structure.`;
+
+    try {
+        const response = await fetch(OPENROUTER_API_URL, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
+                'Content-Type': 'application/json',
+                'HTTP-Referer': window.location.origin,
+                'X-Title': 'AI Social Media Post Generator'
+            },
+            body: JSON.stringify({
+                model: MODELS[model] || MODELS.grok,
+                messages: [
+                    {
+                        role: 'system',
+                        content: systemPrompt
+                    },
+                    {
+                        role: 'user',
+                        content: userPrompt
+                    }
+                ],
+                temperature: 0.8,
+                max_tokens: 1000
+            })
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(`API request failed: ${response.status} - ${errorData.error?.message || 'Unknown error'}`);
+        }
+
+        const data = await response.json();
+        return data.choices[0].message.content;
+    } catch (error) {
+        console.error('Error generating post:', error);
+        throw error;
+    }
+}
+
+// Extract title from post content
+function extractTitle(content) {
+    const lines = content.split('\n');
+    const firstLine = lines[0].replace(/[*#]/g, '').trim();
+    return firstLine.length > 80 ? firstLine.substring(0, 80) + '...' : firstLine;
+}
+
+// Format post content
+function formatPostContent(content) {
+    // Convert markdown-style formatting to HTML
+    let formatted = content
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\n\n/g, '<br><br>')
+        .replace(/\n/g, '<br>');
+    
+    return formatted;
+}
+
 // Load and display post
-function displayPost() {
+async function displayPost(regenerate = false) {
     const topic = localStorage.getItem('postTopic');
     
     if (!topic) {
@@ -141,13 +228,54 @@ function displayPost() {
         return;
     }
     
-    // Simulate loading delay
-    setTimeout(() => {
-        const post = generatePost(topic);
+    if (isGenerating) return;
+    
+    isGenerating = true;
+    
+    // Show loading state
+    document.getElementById('postTitle').textContent = 'Generating...';
+    document.getElementById('postBody').innerHTML = '✨ Creating your LinkedIn post with AI...<br><br>This may take a few seconds.';
+    
+    // Disable regenerate button
+    const regenBtn = document.querySelector('.action-buttons button:first-child');
+    if (regenBtn) {
+        regenBtn.disabled = true;
+        regenBtn.style.opacity = '0.5';
+    }
+    
+    try {
+        // Generate post using AI
+        const postContent = await generateLinkedInPost(topic, currentModel);
         
+        // Extract title and format content
+        const title = extractTitle(postContent);
+        const body = formatPostContent(postContent);
+        
+        // Display the post
+        document.getElementById('postTitle').textContent = title;
+        document.getElementById('postBody').innerHTML = body;
+        
+        // Store generated post
+        localStorage.setItem('generatedPost', postContent);
+        
+    } catch (error) {
+        console.error('Failed to generate post:', error);
+        
+        // Fallback to template-based generation
+        const post = generatePost(topic);
         document.getElementById('postTitle').textContent = post.title;
         document.getElementById('postBody').innerHTML = post.body;
-    }, 500);
+        
+        alert('AI generation failed. Using template instead. Error: ' + error.message);
+    } finally {
+        isGenerating = false;
+        
+        // Re-enable regenerate button
+        if (regenBtn) {
+            regenBtn.disabled = false;
+            regenBtn.style.opacity = '1';
+        }
+    }
 }
 
 // Edit post function
@@ -182,6 +310,27 @@ async function checkAuth() {
     if (!session) {
         window.location.href = 'index.html';
     }
+}
+
+// Regenerate post with model switching
+async function regeneratePost() {
+    // Switch model
+    currentModel = currentModel === 'grok' ? 'deepseek' : 'grok';
+    
+    const modelName = currentModel === 'grok' ? 'Grok Beta' : 'DeepSeek R1';
+    document.getElementById('currentModelName').textContent = modelName;
+    console.log(`Regenerating with ${modelName}...`);
+    
+    await displayPost(true);
+}
+
+// Continue to image generation
+function continueToImage() {
+    // Save the final post content
+    const postContent = document.getElementById('postBody').innerHTML;
+    localStorage.setItem('finalPost', postContent);
+    
+    window.location.href = 'image.html';
 }
 
 // Initialize

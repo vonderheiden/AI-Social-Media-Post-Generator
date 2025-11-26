@@ -25,12 +25,15 @@
             <p class="cta">Give it a try!</p>
             
             <div class="action-buttons">
-                <button class="btn-secondary" onclick="window.location.href='generate.html'">
+                <button class="btn-secondary" onclick="regeneratePost()">
                     🔄 Regenerate Post
                 </button>
                 <button class="btn-secondary" onclick="editPost()">
                     ✏️ Edit Post
                 </button>
+                <div class="model-indicator" id="modelIndicator">
+                    Using: <span id="currentModelName">Grok Beta</span>
+                </div>
             </div>
         </div>
         
@@ -52,7 +55,7 @@
                 </div>
             </div>
             
-            <button class="btn-continue" onclick="window.location.href='image.html'">
+            <button class="btn-continue" onclick="continueToImage()">
                 Continue to Image
             </button>
         </div>

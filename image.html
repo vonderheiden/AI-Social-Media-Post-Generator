@@ -5,16 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generate Image - Social Media Generator</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="generate.css">
 </head>
-<body>
-    <div class="container">
-        <div class="card">
-            <h1>AI Image Generation</h1>
-            <p style="text-align: center; margin: 20px 0;">Image generation will be implemented next.</p>
-            <button onclick="window.location.href='dashboard.html'" class="btn-primary">Back to Dashboard</button>
+<body class="generate-page">
+    <div class="generate-container">
+        <div class="left-panel">
+            <button class="back-btn" onclick="window.location.href='result.html'">
+                ← Back
+            </button>
+            
+            <h1>Create your AI image</h1>
+            
+            <p class="subtitle">Great posts deserve great visuals!</p>
+            
+            <p class="description">Pick a powerful quote from your post to generate a stunning AI image.</p>
+            
+            <p class="instruction">You can:</p>
+            
+            <ol class="methods-list">
+                <li>Select a quote from your post</li>
+                <li>Write your own custom quote</li>
+                <li>Use AI to suggest the best quote</li>
+            </ol>
+            
+            <p class="cta">Let's make it visual!</p>
+        </div>
+        
+        <div class="right-panel">
+            <div class="card">
+                <h2 style="margin-bottom: 20px;">Select a Quote for Your Image</h2>
+                
+                <form id="imageForm">
+                    <div class="input-section active">
+                        <div class="section-header">
+                            <span class="icon">💬</span>
+                            <span class="section-title">Your Post Content</span>
+                        </div>
+                        <div class="section-content">
+                            <div id="postPreview" style="max-height: 200px; overflow-y: auto; padding: 12px; background: #f8f9fa; border-radius: 6px; margin-bottom: 16px; font-size: 14px; line-height: 1.6;">
+                                Loading your post...
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-section active" style="margin-top: 20px;">
+                        <div class="section-header">
+                            <span class="icon">✨</span>
+                            <span class="section-title">Quote for Image</span>
+                        </div>
+                        <div class="section-content">
+                            <textarea 
+                                id="quoteInput" 
+                                placeholder="Enter or paste a quote from your post (or write your own)..."
+                                maxlength="200"
+                                rows="4"
+                                required
+                            ></textarea>
+                            <div class="char-count">
+                                <span id="quoteCharCount">0</span>/200 characters
+                            </div>
+                            <p style="font-size: 13px; color: #666; margin-top: 8px;">
+                                💡 Tip: Shorter quotes (1-2 sentences) work best for images
+                            </p>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-generate">Generate Image</button>
+                </form>
+            </div>
         </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="app.js"></script>
+    <script src="image.js"></script>
 </body>
 </html>
