@@ -34,15 +34,35 @@ if (signUpForm) {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
 
+        console.log('Attempting signup for:', email);
+
         const { data, error } = await supabase.auth.signUp({
             email,
-            password
+            password,
+            options: {
+                emailRedirectTo: 'https://ai-social-media-post-generator-tpwg.onrender.com/dashboard.html',
+                data: {
+                    email: email
+                }
+            }
         });
+
+        console.log('Signup response:', { data, error });
 
         if (error) {
             alert('Error: ' + error.message);
+            console.error('Signup error:', error);
+        } else if (data?.user) {
+            if (data.user.identities && data.user.identities.length === 0) {
+                alert('This email is already registered. Please sign in instead.');
+                window.location.href = 'index.html';
+            } else {
+                alert('Sign up successful! You can now sign in (email confirmation may be required).');
+                window.location.href = 'index.html';
+            }
         } else {
-            alert('Sign up successful! Please check your email to confirm.');
+            alert('Sign up initiated. Please check your email for confirmation.');
+            window.location.href = 'index.html';
         }
     });
 }
