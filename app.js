@@ -18,7 +18,11 @@ if (signInForm) {
         });
 
         if (error) {
-            alert('Error: ' + error.message);
+            if (error.message.includes('Email not confirmed')) {
+                alert('Please confirm your email address before signing in. Check your inbox for the confirmation link.');
+            } else {
+                alert('Error: ' + error.message);
+            }
         } else {
             alert('Sign in successful!');
             window.location.href = 'dashboard.html';
@@ -57,7 +61,7 @@ if (signUpForm) {
                 alert('This email is already registered. Please sign in instead.');
                 window.location.href = 'index.html';
             } else {
-                alert('Sign up successful! You can now sign in (email confirmation may be required).');
+                alert('Account created! Please check your email to confirm your account before signing in.');
                 window.location.href = 'index.html';
             }
         } else {
