@@ -1,6 +1,9 @@
 services:
   - type: web
     name: ai-social-media-generator
-    env: static
-    buildCommand: echo "No build needed"
-    staticPublishPath: .
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
