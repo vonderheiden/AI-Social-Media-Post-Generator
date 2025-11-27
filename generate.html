@@ -6,8 +6,34 @@
     <title>Generate Post - Social Media Generator</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="generate.css">
+    <link rel="stylesheet" href="navigation.css">
 </head>
 <body class="generate-page">
+    <!-- Navigation Header -->
+    <nav class="nav-header">
+        <div class="nav-logo">AI Post Generator</div>
+        <button class="nav-signout" onclick="handleSignOut()">Sign Out</button>
+    </nav>
+    
+    <!-- Progress Stepper -->
+    <div class="progress-stepper">
+        <div class="stepper-container">
+            <div class="step active">
+                <div class="step-circle">1</div>
+                <div class="step-label">Input Topic</div>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step">
+                <div class="step-circle">2</div>
+                <div class="step-label">Generate Post</div>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step">
+                <div class="step-circle">3</div>
+                <div class="step-label">Generate Image</div>
+            </div>
+        </div>
+    </div>
     <div class="generate-container">
         <div class="left-panel">
             <button class="back-btn" onclick="window.location.href='dashboard.html'">
@@ -122,6 +148,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="app.js"></script>
+    <script src="navigation.js"></script>
     <script src="generate.js"></script>
 </body>
 </html>
