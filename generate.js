@@ -65,7 +65,7 @@ if (generateForm) {
         const quote = quoteInput.value.trim();
         
         if (!topic && !quote) {
-            alert('Please enter a topic or quote to generate a post.');
+            showNotification('Please enter a topic or quote to generate a post.', 'error');
             return;
         }
         

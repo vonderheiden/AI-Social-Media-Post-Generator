@@ -230,7 +230,7 @@ async function displayPost(regenerate = false) {
         document.getElementById('postTitle').textContent = post.title;
         document.getElementById('postBody').innerHTML = post.body;
         
-        alert('AI generation failed. Using template instead. Error: ' + error.message);
+        showNotification('AI generation failed. Using template instead. Error: ' + error.message, 'error');
     } finally {
         isGenerating = false;
         
@@ -263,7 +263,7 @@ function editPost() {
         postBody.style.padding = '0';
         editBtn.textContent = '✏️ Edit Post';
         editBtn.onclick = editPost;
-        alert('Changes saved!');
+        showNotification('Changes saved!', 'success');
     };
 }
 

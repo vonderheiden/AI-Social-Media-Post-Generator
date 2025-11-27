@@ -4,7 +4,7 @@
 async function handleSignOut() {
     const { error } = await supabase.auth.signOut();
     if (error) {
-        alert('Error signing out: ' + error.message);
+        showNotification('Error signing out: ' + error.message, 'error');
     } else {
         window.location.href = 'index.html';
     }

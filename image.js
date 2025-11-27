@@ -31,7 +31,7 @@ if (imageForm) {
         const quote = quoteInput.value.trim();
         
         if (!quote) {
-            alert('Please enter a quote for your image.');
+            showNotification('Please enter a quote for your image.', 'error');
             return;
         }
         
@@ -39,8 +39,10 @@ if (imageForm) {
         localStorage.setItem('imageQuote', quote);
         
         // Navigate to final page (to be implemented)
-        alert('Image generation will be implemented next! Quote saved: ' + quote);
-        window.location.href = 'dashboard.html';
+        showNotification('Quote saved! Image generation coming soon.', 'success');
+        setTimeout(() => {
+            window.location.href = 'generate.html';
+        }, 1500);
     });
 }
 
