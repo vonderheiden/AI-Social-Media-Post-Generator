@@ -98,6 +98,45 @@ input:focus {
     text-decoration: underline;
 }
 
+/* Custom notification styles */
+.custom-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 16px 24px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    font-size: 15px;
+    font-weight: 500;
+    z-index: 10000;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+    max-width: 400px;
+    border-left: 4px solid #667eea;
+}
+
+.custom-notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.custom-notification.success {
+    border-left-color: #4caf50;
+    color: #2e7d32;
+}
+
+.custom-notification.error {
+    border-left-color: #f44336;
+    color: #c62828;
+}
+
+.custom-notification.info {
+    border-left-color: #2196f3;
+    color: #1565c0;
+}
+
 .btn-secondary {
     width: 100%;
     padding: 14px;

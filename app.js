@@ -4,6 +4,34 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+// Custom notification system (replaces alert)
+function showNotification(message, type = 'info') {
+    // Remove existing notification if any
+    const existing = document.querySelector('.custom-notification');
+    if (existing) {
+        existing.remove();
+    }
+
+    const notification = document.createElement('div');
+    notification.className = `custom-notification ${type}`;
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    
+    // Trigger animation
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 10);
+    
+    // Auto remove after 4 seconds
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    }, 4000);
+}
+
 // Sign In
 const signInForm = document.getElementById('signInForm');
 if (signInForm) {
@@ -19,13 +47,13 @@ if (signInForm) {
 
         if (error) {
             if (error.message.includes('Email not confirmed')) {
-                alert('Please confirm your email address before signing in. Check your inbox for the confirmation link.');
+                showNotification('Please confirm your email address before signing in. Check your inbox for the confirmation link.', 'error');
             } else {
-                alert('Error: ' + error.message);
+                showNotification('Error: ' + error.message, 'error');
             }
         } else {
-            alert('Sign in successful!');
-            window.location.href = 'dashboard.html';
+            // Redirect directly to generate page, skipping dashboard
+            window.location.href = 'generate.html';
         }
     });
 }
@@ -54,19 +82,23 @@ if (signUpForm) {
         console.log('Signup response:', { data, error });
 
         if (error) {
-            alert('Error: ' + error.message);
+            showNotification('Error: ' + error.message, 'error');
             console.error('Signup error:', error);
         } else if (data?.user) {
             if (data.user.identities && data.user.identities.length === 0) {
-                alert('This email is already registered. Please sign in instead.');
+                showNotification('This email is already registered. Please sign in instead.', 'info');
                 window.location.href = 'index.html';
             } else {
-                alert('Account created! Please check your email to confirm your account before signing in.');
-                window.location.href = 'index.html';
+                showNotification('Account created! Please check your email to confirm your account before signing in.', 'success');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
             }
         } else {
-            alert('Sign up initiated. Please check your email for confirmation.');
-            window.location.href = 'index.html';
+            showNotification('Sign up initiated. Please check your email for confirmation.', 'success');
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2000);
         }
     });
 }
