@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Social Media Post Generator - Create Engaging Content in Minutes</title>
+    <link rel="stylesheet" href="landing.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-placeholder">
+                        <span class="logo-text">AI Post Generator</span>
+                    </div>
+                </div>
+                <nav class="nav">
+                    <a href="#features">Features</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#reviews">Reviews</a>
+                    <a href="#faq">FAQ</a>
+                </nav>
+                <button class="cta-button" onclick="showAuthModal()">Get Started Free</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Generate Viral Social Media Posts in Under 60 Seconds</h1>
+                    <p>Transform any topic into engaging LinkedIn, Facebook, Twitter, and Instagram posts with AI-powered content generation and stunning visuals.</p>
+                    <button class="hero-cta" onclick="showAuthModal()">Start Creating Posts Now</button>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">10,000+</span>
+                            <span class="stat-label">Posts Generated</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">4.9/5</span>
+                            <span class="stat-label">User Rating</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">95%</span>
+                            <span class="stat-label">Time Saved</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-illustration">
+                        <div class="person-with-highlighter">
+                            <div class="person">👨‍💼</div>
+                            <div class="highlighter">🖍️</div>
+                            <div class="sparkles">✨</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Statement Section -->
+    <section class="problem-section">
+        <div class="container">
+            <h2>Point Out The Problem</h2>
+            <h3>Does this sound familiar?</h3>
+            <div class="problems-grid">
+                <div class="problem-item">
+                    <span class="problem-icon">😰</span>
+                    <p>Spending hours staring at a blank screen, struggling to write engaging social media posts</p>
+                </div>
+                <div class="problem-item">
+                    <span class="problem-icon">📉</span>
+                    <p>Your posts get low engagement because they don't resonate with your audience</p>
+                </div>
+                <div class="problem-item">
+                    <span class="problem-icon">⏰</span>
+                    <p>Constantly running out of content ideas and posting inconsistently</p>
+                </div>
+                <div class="problem-item">
+                    <span class="problem-icon">🎨</span>
+                    <p>Creating professional-looking images for your posts takes forever</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Introduction Section -->
+    <section class="business-intro">
+        <div class="container">
+            <div class="intro-content">
+                <div class="intro-text">
+                    <h2>Introduce Your Business</h2>
+                    <p>We're the AI-powered solution that transforms your content creation process. Our advanced AI understands each social media platform's unique requirements and generates perfectly optimized posts that drive engagement.</p>
+                    <p>Whether you're a solopreneur, marketing professional, or business owner, our platform adapts to your voice and creates content that resonates with your audience across LinkedIn, Facebook, Twitter, and Instagram.</p>
+                    <div class="intro-features">
+                        <div class="feature">✅ Platform-specific optimization</div>
+                        <div class="feature">✅ AI-generated images</div>
+                        <div class="feature">✅ Multiple content styles</div>
+                        <div class="feature">✅ Instant results</div>
+                    </div>
+                </div>
+                <div class="intro-visual">
+                    <div class="person-with-wrench">
+                        <div class="person">👩‍🔧</div>
+                        <div class="wrench">🔧</div>
+                        <div class="gears">⚙️</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Work With Us Section -->
+    <section class="why-us">
+        <div class="container">
+            <h2>Why Work With Us</h2>
+            <div class="benefits-grid">
+                <div class="benefit">
+                    <div class="benefit-icon">🚀</div>
+                    <h3>Lightning Fast</h3>
+                    <p>Generate professional posts in under 60 seconds. No more writer's block or hours of brainstorming.</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">🎯</div>
+                    <h3>Platform Optimized</h3>
+                    <p>Each post is tailored for specific platforms - LinkedIn's professional tone, Instagram's visual appeal, Twitter's brevity.</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">🎨</div>
+                    <h3>Complete Package</h3>
+                    <p>Get both engaging text and stunning AI-generated images that perfectly complement your message.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Choose Your Platform & Topic</h3>
+                        <p>Select your target platform and enter your topic or idea. Our AI understands the nuances of each social media platform.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>AI Creates Your Content</h3>
+                        <p>Our advanced AI generates engaging, platform-optimized posts and creates stunning visuals to match your content.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Copy, Download & Post</h3>
+                        <p>Get your ready-to-post content with one click. Copy the text, download the image, and watch your engagement soar!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="puzzle-illustration">
+                <div class="person-with-puzzle">
+                    <div class="person">👨‍💻</div>
+                    <div class="puzzle">🧩</div>
+                    <div class="success">🎉</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews Section -->
+    <section class="reviews" id="reviews">
+        <div class="container">
+            <h2>Customer Reviews</h2>
+            <div class="reviews-grid">
+                <div class="review">
+                    <div class="review-avatar">👨‍💼</div>
+                    <div class="review-content">
+                        <div class="review-quote">"Game changer!"</div>
+                        <p>"This tool has completely transformed my social media strategy. I went from spending 3 hours per post to just 3 minutes. The AI-generated content is spot-on and the images are professional quality."</p>
+                        <div class="review-rating">⭐⭐⭐⭐⭐</div>
+                        <div class="review-author">- Sarah M., Marketing Director</div>
+                    </div>
+                </div>
+                <div class="review">
+                    <div class="review-avatar">👩‍💻</div>
+                    <div class="review-content">
+                        <div class="review-quote">"Incredible results!"</div>
+                        <p>"My LinkedIn engagement increased by 300% after using this platform. The posts feel authentic and professional, and the platform-specific optimization really works."</p>
+                        <div class="review-rating">⭐⭐⭐⭐⭐</div>
+                        <div class="review-author">- Mike R., Entrepreneur</div>
+                    </div>
+                </div>
+                <div class="review">
+                    <div class="review-avatar">👨‍🎨</div>
+                    <div class="review-content">
+                        <div class="review-quote">"Simply amazing!"</div>
+                        <p>"As a creative professional, I was skeptical about AI-generated content. But this tool creates posts that sound like me and images that perfectly match my brand aesthetic."</p>
+                        <div class="review-rating">⭐⭐⭐⭐⭐</div>
+                        <div class="review-author">- Alex K., Creative Director</div>
+                    </div>
+                </div>
+            </div>
+            <div class="video-review-illustration">
+                <div class="person-giving-review">
+                    <div class="person">👩‍💼</div>
+                    <div class="video-camera">📹</div>
+                    <div class="thumbs-up">👍</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2>FAQ</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>How does the AI generate platform-specific content?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our AI is trained on the unique characteristics of each social media platform. It understands LinkedIn's professional tone, Facebook's casual style, Twitter's brevity, and Instagram's visual-first approach, creating optimized content for each platform.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Can I customize the generated content?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! You can edit any generated post before using it. The AI provides a great starting point, and you can modify the content to match your exact voice and brand.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What types of images can the AI generate?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our AI creates professional, inspirational images perfect for social media. Think motivational quotes on beautiful backgrounds, business scenes, and lifestyle imagery that complements your content.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Is there a limit to how many posts I can generate?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Currently, you can generate unlimited posts! We believe in empowering creators with the tools they need to succeed on social media.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>How long does it take to generate a post?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Most posts are generated in under 60 seconds! The text generation is nearly instant, and image creation typically takes 30-45 seconds.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to get started?</h2>
+                <p>Join thousands of creators who are already generating viral social media content with AI. Start creating engaging posts in under 60 seconds.</p>
+                <button class="final-cta-button" onclick="showAuthModal()">Start Creating Posts Now</button>
+                <div class="calendar-widget">
+                    <div class="calendar-placeholder">
+                        <div class="calendar-icon">📅</div>
+                        <p>No scheduling needed - start immediately!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Auth Modal -->
+    <div class="auth-modal" id="authModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Get Started Free</h3>
+                <button class="close-modal" onclick="hideAuthModal()">&times;</button>
+            </div>
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="showSignIn()">Sign In</button>
+                <button class="auth-tab" onclick="showSignUp()">Sign Up</button>
+            </div>
+            <div class="auth-forms">
+                <!-- Sign In Form -->
+                <form id="signInForm" class="auth-form active">
+                    <div class="form-group">
+                        <label for="signInEmail">Email</label>
+                        <input type="email" id="signInEmail" placeholder="you@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signInPassword">Password</label>
+                        <input type="password" id="signInPassword" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="auth-submit">Sign In</button>
+                </form>
+                
+                <!-- Sign Up Form -->
+                <form id="signUpForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="signUpEmail">Email</label>
+                        <input type="email" id="signUpEmail" placeholder="you@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signUpPassword">Password</label>
+                        <input type="password" id="signUpPassword" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="auth-submit">Create Account</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+    <script src="landing.js"></script>
+</body>
+</html>
