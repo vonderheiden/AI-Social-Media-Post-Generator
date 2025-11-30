@@ -75,6 +75,33 @@
                 </div>
 
                 <form id="generateForm">
+                    <!-- Platform Selection -->
+                    <div class="platform-selection">
+                        <h3>Choose your platform</h3>
+                        <div class="platform-grid">
+                            <div class="platform-card active" data-platform="linkedin" onclick="selectPlatform('linkedin')">
+                                <div class="platform-icon">💼</div>
+                                <div class="platform-name">LinkedIn</div>
+                                <div class="platform-desc">Professional & insights</div>
+                            </div>
+                            <div class="platform-card" data-platform="facebook" onclick="selectPlatform('facebook')">
+                                <div class="platform-icon">👥</div>
+                                <div class="platform-name">Facebook</div>
+                                <div class="platform-desc">Casual & personal</div>
+                            </div>
+                            <div class="platform-card" data-platform="twitter" onclick="selectPlatform('twitter')">
+                                <div class="platform-icon">🐦</div>
+                                <div class="platform-name">X (Twitter)</div>
+                                <div class="platform-desc">Short & punchy</div>
+                            </div>
+                            <div class="platform-card" data-platform="instagram" onclick="selectPlatform('instagram')">
+                                <div class="platform-icon">📸</div>
+                                <div class="platform-name">Instagram</div>
+                                <div class="platform-desc">Visual & expressive</div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="input-section active" id="topicSection">
                         <div class="section-header" onclick="toggleSection('topic')">
                             <span class="icon">✏️</span>
