@@ -166,3 +166,53 @@ async function checkAuth() {
 // Initialize
 checkAuth();
 loadPostContent();
+
+// Generate image using DALL-E
+async function generateImage(quote) {
+    const generateBtn = document.getElementById('generateBtn');
+    const originalText = generateBtn.textContent;
+    
+    // Show loading state
+    generateBtn.disabled = true;
+    generateBtn.innerHTML = '<div class="loading-spinner" style="width: 20px; height: 20px; margin-right: 8px; display: inline-block;"></div>Generating Image...';
+    
+    const prompt = `A realistic city sidewalk scene outside a cozy, independent bookstore or library. A quote is displayed prominently on a clean white brick wall in an elegant serif font: "${quote}". The window reveals shelves filled with books inside, warm interior lighting glowing softly. Tall trees and square planters line the sidewalk, casting gentle shadows in the late afternoon light. The vibe is intellectual, calm, and inspirational—perfect for thoughtful social media quotes.`;
+    
+    try {
+        const response = await fetch('/api/generate-image', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                prompt: prompt,
+                quote: quote
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to generate image');
+        }
+
+        const data = await response.json();
+        
+        // Store image URL and navigate to final page
+        localStorage.setItem('generatedImageUrl', data.imageUrl);
+        localStorage.setItem('finalQuote', quote);
+        
+        showNotification('Image generated successfully!', 'success');
+        
+        // Navigate to final page (to be created)
+        setTimeout(() => {
+            window.location.href = 'final.html';
+        }, 1500);
+        
+    } catch (error) {
+        console.error('Error generating image:', error);
+        showNotification('Image generation failed. Please try again.', 'error');
+        
+        // Reset button
+        generateBtn.disabled = false;
+        generateBtn.textContent = originalText;
+    }
+}
