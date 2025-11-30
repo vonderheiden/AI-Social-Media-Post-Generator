@@ -1,8 +1,24 @@
-// Supabase configuration
-const SUPABASE_URL = 'https://pkibhlyvjtzikvyjmrdm.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBraWJobHl2anR6aWt2eWptcmRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQxNDYxNjMsImV4cCI6MjA3OTcyMjE2M30.BAF-zEZSgjW7DSrt4QTGUxH_UtPqq7pVJv4sLYzvF_g';
+// Supabase configuration - loaded from server
+let supabase;
 
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+// Initialize Supabase client with config from server
+async function initSupabase() {
+    try {
+        const response = await fetch('/api/config');
+        const config = await response.json();
+        supabase = window.supabase.createClient(config.supabaseUrl, config.supabaseAnonKey);
+    } catch (error) {
+        console.error('Failed to initialize Supabase:', error);
+        // Fallback for development
+        supabase = window.supabase.createClient(
+            'https://pkibhlyvjtzikvyjmrdm.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBraWJobHl2anR6aWt2eWptcmRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQxNDYxNjMsImV4cCI6MjA3OTcyMjE2M30.BAF-zEZSgjW7DSrt4QTGUxH_UtPqq7pVJv4sLYzvF_g'
+        );
+    }
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', initSupabase);
 
 // Custom notification system (replaces alert)
 function showNotification(message, type = 'info') {

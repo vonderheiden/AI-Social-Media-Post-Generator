@@ -278,6 +278,14 @@ app.post('/api/generate-image', async (req, res) => {
     }
 });
 
+// API endpoint for client configuration (non-sensitive data only)
+app.get('/api/config', (req, res) => {
+    res.json({
+        supabaseUrl: process.env.SUPABASE_URL || 'https://pkibhlyvjtzikvyjmrdm.supabase.co',
+        supabaseAnonKey: process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBraWJobHl2anR6aWt2eWptcmRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQxNDYxNjMsImV4cCI6MjA3OTcyMjE2M30.BAF-zEZSgjW7DSrt4QTGUxH_UtPqq7pVJv4sLYzvF_g'
+    });
+});
+
 // Serve static files from the root directory - MUST come after API routes
 app.use(express.static(__dirname));
 
