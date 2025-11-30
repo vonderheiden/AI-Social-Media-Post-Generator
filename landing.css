@@ -744,6 +744,65 @@ Why Us Section */
     box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
 }
 
+/* SVG Illustration Styles */
+.hero-svg, .intro-svg, .workflow-svg, .review-svg, .calendar-svg, .avatar-svg {
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+}
+
+.hero-illustration {
+    animation: float 3s ease-in-out infinite;
+}
+
+.intro-visual svg {
+    animation: float 3s ease-in-out infinite 0.5s;
+}
+
+.puzzle-illustration svg {
+    animation: float 3s ease-in-out infinite 1s;
+}
+
+.video-review-illustration svg {
+    animation: float 3s ease-in-out infinite 1.5s;
+}
+
+.calendar-svg {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 16px;
+}
+
+.avatar-svg {
+    width: 60px;
+    height: 60px;
+}
+
+/* SVG Animation Groups */
+.sparkles-group {
+    animation: twinkle 2s infinite;
+}
+
+.highlighter-group {
+    animation: bounce 2s infinite 0.5s;
+}
+
+.wrench-group {
+    animation: rotate 4s linear infinite;
+}
+
+.gears-group {
+    animation: spin 3s linear infinite;
+}
+
+.success-elements {
+    animation: twinkle 1.5s infinite;
+}
+
+.review-stars {
+    animation: twinkle 2s infinite 0.3s;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .hero-content,
