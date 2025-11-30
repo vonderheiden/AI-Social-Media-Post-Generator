@@ -40,21 +40,19 @@ function loadFinalContent() {
 async function copyPost() {
     try {
         // Strip HTML tags for plain text copy
-        const textContent = finalPostContent.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ');
+        const textContent = finalPostContent.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
         
         await navigator.clipboard.writeText(textContent);
         
         // Show success feedback
-        const btn = event.target;
-        const originalText = btn.innerHTML;
-        btn.innerHTML = '<span class="success-checkmark">✓</span>Copied!';
-        btn.style.background = '#4caf50';
-        btn.style.color = 'white';
+        const btn = document.getElementById('copyPostBtn');
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<span class="action-icon">✓</span><span>Copied!</span>';
+        btn.classList.add('success');
         
         setTimeout(() => {
-            btn.innerHTML = originalText;
-            btn.style.background = '';
-            btn.style.color = '';
+            btn.innerHTML = originalHTML;
+            btn.classList.remove('success');
         }, 2000);
         
         showNotification('Post text copied to clipboard!', 'success');
@@ -67,18 +65,20 @@ async function copyPost() {
 // Download generated image
 async function downloadImage() {
     if (!generatedImageUrl) {
-        showNotification('No image to download. Please generate an image first.', 'error');
+        showNotification('No image to download. Image generation is not yet configured.', 'info');
         return;
     }
     
     try {
-        const btn = event.target;
-        const originalText = btn.innerHTML;
-        btn.innerHTML = '⏳ Downloading...';
+        const btn = document.getElementById('downloadBtn');
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<span class="action-icon">⏳</span><span>Downloading...</span>';
         btn.disabled = true;
         
         // Fetch the image
         const response = await fetch(generatedImageUrl);
+        if (!response.ok) throw new Error('Failed to fetch image');
+        
         const blob = await response.blob();
         
         // Create download link
@@ -92,14 +92,12 @@ async function downloadImage() {
         window.URL.revokeObjectURL(url);
         
         // Show success feedback
-        btn.innerHTML = '<span class="success-checkmark">✓</span>Downloaded!';
-        btn.style.background = '#4caf50';
-        btn.style.color = 'white';
+        btn.innerHTML = '<span class="action-icon">✓</span><span>Downloaded!</span>';
+        btn.classList.add('success');
         
         setTimeout(() => {
-            btn.innerHTML = originalText;
-            btn.style.background = '';
-            btn.style.color = '';
+            btn.innerHTML = originalHTML;
+            btn.classList.remove('success');
             btn.disabled = false;
         }, 2000);
         
@@ -109,8 +107,8 @@ async function downloadImage() {
         showNotification('Failed to download image. Please try again.', 'error');
         
         // Reset button
-        const btn = event.target;
-        btn.innerHTML = '📥 Download Image';
+        const btn = document.getElementById('downloadBtn');
+        btn.innerHTML = '<span class="action-icon">📥</span><span>Download Image</span>';
         btn.disabled = false;
     }
 }
@@ -118,7 +116,7 @@ async function downloadImage() {
 // Copy image URL to clipboard
 async function copyImageUrl() {
     if (!generatedImageUrl) {
-        showNotification('No image URL to copy. Please generate an image first.', 'error');
+        showNotification('No image URL to copy. Image generation is not yet configured.', 'info');
         return;
     }
     
@@ -126,16 +124,14 @@ async function copyImageUrl() {
         await navigator.clipboard.writeText(generatedImageUrl);
         
         // Show success feedback
-        const btn = event.target;
-        const originalText = btn.innerHTML;
-        btn.innerHTML = '<span class="success-checkmark">✓</span>Copied!';
-        btn.style.background = '#4caf50';
-        btn.style.color = 'white';
+        const btn = document.getElementById('copyUrlBtn');
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<span class="action-icon">✓</span><span>Copied!</span>';
+        btn.classList.add('success');
         
         setTimeout(() => {
-            btn.innerHTML = originalText;
-            btn.style.background = '';
-            btn.style.color = '';
+            btn.innerHTML = originalHTML;
+            btn.classList.remove('success');
         }, 2000);
         
         showNotification('Image URL copied to clipboard!', 'success');
