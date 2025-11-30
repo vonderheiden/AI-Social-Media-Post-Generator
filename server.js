@@ -17,7 +17,7 @@ app.use(express.json());
 
 // API endpoint for generating posts - MUST come before static files
 app.post('/api/generate', async (req, res) => {
-    const { topic, model = 'grok' } = req.body;
+    const { topic, model = 'grok', platform = 'linkedin' } = req.body;
 
     if (!topic) {
         return res.status(400).json({ error: 'Topic is required' });
@@ -31,20 +31,83 @@ app.post('/api/generate', async (req, res) => {
         deepseek: 'tngtech/tng-r1t-chimera:free'
     };
 
-    const systemPrompt = `You are an expert LinkedIn content creator. Generate engaging, professional LinkedIn posts that:
-- Start with a compelling hook
-- Use clear formatting with line breaks
-- Include relevant emojis sparingly
-- Have 3-5 key points with checkmarks (✅) or bullet points
-- End with a call-to-action or question
-- Include 5 relevant hashtags at the end
-- Keep it between 150-300 words
-- Sound authentic and conversational, not corporate
-- Focus on providing value and insights`;
+    // Platform-specific prompts
+    const platformPrompts = {
+        linkedin: {
+            systemPrompt: `You are an expert LinkedIn content creator. Generate professional, insight-driven LinkedIn posts that:
+- Start with a compelling hook or question
+- Use clear formatting with line breaks and bullet points
+- Include relevant emojis sparingly (1-3 per post)
+- Have 3-5 key insights or actionable points
+- End with a call-to-action or engaging question
+- Include 3-5 relevant professional hashtags
+- Keep it between 300-1300 characters
+- Sound authentic and conversational, not overly corporate
+- Focus on providing value, insights, and thought leadership
+- Use professional tone suitable for business networking`,
+            
+            userPrompt: `Create a professional LinkedIn post about: ${topic}
 
-    const userPrompt = `Create a LinkedIn post about: ${topic}
+Make it insightful, actionable, and suitable for professional networking. Focus on thought leadership and industry insights.`
+        },
+        
+        facebook: {
+            systemPrompt: `You are an expert Facebook content creator. Generate casual, personal Facebook posts that:
+- Use a friendly, conversational tone
+- Tell stories and share personal experiences
+- Include emojis naturally throughout (3-8 per post)
+- Create emotional connection with readers
+- Encourage comments and engagement
+- Use casual language and contractions
+- Can be flexible in length (50-2000 characters)
+- Feel authentic and relatable
+- Include 2-4 relevant hashtags
+- Focus on community and personal connection`,
+            
+            userPrompt: `Create a casual, personal Facebook post about: ${topic}
 
-Make it engaging, actionable, and shareable. Format it properly with line breaks and structure.`;
+Make it relatable, engaging, and encourage community interaction. Use storytelling and personal connection.`
+        },
+        
+        twitter: {
+            systemPrompt: `You are an expert X (Twitter) content creator. Generate short, punchy tweets that:
+- Are concise and impactful (under 280 characters)
+- Start with a strong hook or bold statement
+- Use 1-2 emojis strategically
+- Include trending or relevant hashtags (2-3 max)
+- Spark immediate engagement and discussion
+- Use conversational, direct language
+- Can be controversial or thought-provoking
+- Focus on one clear message or insight
+- Encourage retweets and replies`,
+            
+            userPrompt: `Create a short, punchy X (Twitter) post about: ${topic}
+
+Keep it under 280 characters, make it impactful and engaging. Focus on one clear, memorable message.`
+        },
+        
+        instagram: {
+            systemPrompt: `You are an expert Instagram content creator. Generate visual-first Instagram captions that:
+- Complement and enhance visual content
+- Use expressive, emotional language
+- Include 3-8 emojis naturally throughout
+- Tell stories that connect with followers
+- Use line breaks for easy reading
+- Include a mix of popular and niche hashtags (5-15 hashtags)
+- Keep captions between 50-400 words
+- Encourage saves, shares, and comments
+- Use authentic, personal voice
+- Focus on lifestyle, inspiration, or behind-the-scenes content`,
+            
+            userPrompt: `Create an engaging Instagram caption about: ${topic}
+
+Make it visual-first, expressive, and perfect for accompanying an image or video. Focus on storytelling and emotional connection.`
+        }
+    };
+
+    const selectedPrompt = platformPrompts[platform] || platformPrompts.linkedin;
+    const systemPrompt = selectedPrompt.systemPrompt;
+    const userPrompt = selectedPrompt.userPrompt;
 
     try {
         const response = await fetch(OPENROUTER_API_URL, {

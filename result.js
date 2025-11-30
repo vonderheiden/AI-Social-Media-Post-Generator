@@ -139,7 +139,7 @@ function generatePost(topic) {
 }
 
 // Generate post using backend API (keeps API key secure)
-async function generateLinkedInPost(topic, model = 'grok') {
+async function generatePlatformPost(topic, model = 'grok', platform = 'linkedin') {
     try {
         const response = await fetch(API_ENDPOINT, {
             method: 'POST',
@@ -148,7 +148,8 @@ async function generateLinkedInPost(topic, model = 'grok') {
             },
             body: JSON.stringify({
                 topic: topic,
-                model: model
+                model: model,
+                platform: platform
             })
         });
 
@@ -186,6 +187,7 @@ function formatPostContent(content) {
 // Load and display post
 async function displayPost(regenerate = false) {
     const topic = localStorage.getItem('postTopic');
+    const platform = localStorage.getItem('selectedPlatform') || 'linkedin';
     
     if (!topic) {
         window.location.href = 'generate.html';
@@ -196,9 +198,16 @@ async function displayPost(regenerate = false) {
     
     isGenerating = true;
     
-    // Show loading state
+    // Show loading state with platform-specific messaging
+    const platformNames = {
+        linkedin: 'LinkedIn',
+        facebook: 'Facebook', 
+        twitter: 'X (Twitter)',
+        instagram: 'Instagram'
+    };
+    
     document.getElementById('postTitle').textContent = 'Generating...';
-    document.getElementById('postBody').innerHTML = '✨ Creating your LinkedIn post with AI...<br><br>This may take a few seconds.';
+    document.getElementById('postBody').innerHTML = `✨ Creating your ${platformNames[platform]} post with AI...<br><br>This may take a few seconds.`;
     
     // Disable regenerate button
     const regenBtn = document.querySelector('.action-buttons button:first-child');
@@ -208,8 +217,8 @@ async function displayPost(regenerate = false) {
     }
     
     try {
-        // Generate post using AI
-        const postContent = await generateLinkedInPost(topic, currentModel);
+        // Generate post using AI with platform context
+        const postContent = await generatePlatformPost(topic, currentModel, platform);
         
         // Extract title and format content
         const title = extractTitle(postContent);
@@ -226,7 +235,7 @@ async function displayPost(regenerate = false) {
         console.error('Failed to generate post:', error);
         
         // Fallback to template-based generation
-        const post = generatePost(topic);
+        const post = generatePost(topic, platform);
         document.getElementById('postTitle').textContent = post.title;
         document.getElementById('postBody').innerHTML = post.body;
         
