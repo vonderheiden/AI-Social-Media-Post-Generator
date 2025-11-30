@@ -40,63 +40,61 @@
                 ← Back
             </button>
             
-            <h1>Create your AI image</h1>
+            <h1>Pick the best quote</h1>
             
-            <p class="subtitle">Great posts deserve great visuals!</p>
+            <p class="subtitle">Great LinkedIn posts inspire others using artfully crafted language and engaging images.</p>
             
-            <p class="description">Pick a powerful quote from your post to generate a stunning AI image.</p>
+            <p class="description">AI will help you create images for your posts.</p>
             
-            <p class="instruction">You can:</p>
+            <p class="instruction">Here are some inspirational quotes from your post. Pick a great one to generate an image.</p>
             
-            <ol class="methods-list">
-                <li>Select a quote from your post</li>
-                <li>Write your own custom quote</li>
-                <li>Use AI to suggest the best quote</li>
-            </ol>
-            
-            <p class="cta">Let's make it visual!</p>
+            <div class="tips-box">
+                <h3>TIPS</h3>
+                <ul>
+                    <li>The fewer words the better</li>
+                    <li>Affirmation never hurts</li>
+                    <li>Use a tone that fits your audience</li>
+                </ul>
+            </div>
         </div>
         
         <div class="right-panel">
             <div class="card">
-                <h2 style="margin-bottom: 20px;">Select a Quote for Your Image</h2>
-                
                 <form id="imageForm">
-                    <div class="input-section active">
-                        <div class="section-header">
-                            <span class="icon">💬</span>
-                            <span class="section-title">Your Post Content</span>
-                        </div>
-                        <div class="section-content">
-                            <div id="postPreview" style="max-height: 200px; overflow-y: auto; padding: 12px; background: #f8f9fa; border-radius: 6px; margin-bottom: 16px; font-size: 14px; line-height: 1.6;">
-                                Loading your post...
-                            </div>
+                    <!-- AI Generated Quotes -->
+                    <div class="quotes-container" id="quotesContainer">
+                        <div class="loading-quotes">
+                            <div class="loading-spinner"></div>
+                            <p>Generating inspirational quotes from your post...</p>
                         </div>
                     </div>
 
-                    <div class="input-section active" style="margin-top: 20px;">
-                        <div class="section-header">
-                            <span class="icon">✨</span>
-                            <span class="section-title">Quote for Image</span>
-                        </div>
-                        <div class="section-content">
-                            <textarea 
-                                id="quoteInput" 
-                                placeholder="Enter or paste a quote from your post (or write your own)..."
-                                maxlength="200"
-                                rows="4"
-                                required
-                            ></textarea>
-                            <div class="char-count">
-                                <span id="quoteCharCount">0</span>/200 characters
-                            </div>
-                            <p style="font-size: 13px; color: #666; margin-top: 8px;">
-                                💡 Tip: Shorter quotes (1-2 sentences) work best for images
-                            </p>
+                    <!-- Regenerate Quotes Button -->
+                    <button type="button" class="btn-regenerate" onclick="generateQuotes()">
+                        🔄 Get Different Quotes
+                    </button>
+
+                    <div class="divider">
+                        <span>OR</span>
+                    </div>
+
+                    <!-- Custom Quote Input -->
+                    <div class="custom-quote-section">
+                        <p class="custom-label">Or write your own quote</p>
+                        <textarea 
+                            id="customQuoteInput" 
+                            placeholder="Type your own inspirational quote here..."
+                            maxlength="150"
+                            rows="3"
+                        ></textarea>
+                        <div class="char-count">
+                            <span id="customCharCount">0</span>/150 characters
                         </div>
                     </div>
 
-                    <button type="submit" class="btn-generate">Generate Image</button>
+                    <button type="submit" class="btn-generate" disabled id="generateBtn">
+                        Generate Image
+                    </button>
                 </form>
             </div>
         </div>
