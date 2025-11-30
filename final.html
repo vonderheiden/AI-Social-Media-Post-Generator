@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Final Post - Social Media Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="generate.css">
+    <link rel="stylesheet" href="navigation.css">
+    <link rel="stylesheet" href="final.css">
+</head>
+<body class="generate-page">
+    <!-- Navigation Header -->
+    <nav class="nav-header">
+        <div class="nav-logo">AI Post Generator</div>
+        <button class="nav-signout" onclick="handleSignOut()">Sign Out</button>
+    </nav>
+    
+    <!-- Progress Stepper -->
+    <div class="progress-stepper">
+        <div class="stepper-container">
+            <div class="step completed">
+                <div class="step-circle">✓</div>
+                <div class="step-label">Input Topic</div>
+            </div>
+            <div class="step-connector completed"></div>
+            <div class="step completed">
+                <div class="step-circle">✓</div>
+                <div class="step-label">Generate Post</div>
+            </div>
+            <div class="step-connector completed"></div>
+            <div class="step completed">
+                <div class="step-circle">✓</div>
+                <div class="step-label">Generate Image</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="generate-container">
+        <div class="left-panel">
+            <button class="back-btn" onclick="window.location.href='image.html'">
+                ← Back
+            </button>
+            
+            <h1>Here's your final post</h1>
+            
+            <p class="subtitle">Congrats! 🎉</p>
+            
+            <p class="description">You just created a compelling post about an important topic with a beautiful AI-generated image to go with it!</p>
+            
+            <p class="instruction">You can post it today, or add it to your calendar so you can post it on a later date.</p>
+            
+            <div class="action-buttons">
+                <button class="btn-secondary" onclick="copyPost()">
+                    📋 Copy Post Text
+                </button>
+                <button class="btn-secondary" onclick="downloadImage()">
+                    📥 Download Image
+                </button>
+                <button class="btn-secondary" onclick="copyImageUrl()">
+                    🔗 Copy Image URL
+                </button>
+            </div>
+            
+            <button class="btn-create-another" onclick="createAnother()">
+                ✨ Create unlimited posts →
+            </button>
+        </div>
+        
+        <div class="right-panel">
+            <div class="linkedin-post-final">
+                <div class="post-header">
+                    <div class="avatar">
+                        <span class="avatar-initial">U</span>
+                    </div>
+                    <div class="post-meta">
+                        <div class="author-name">Your Name</div>
+                        <div class="post-time">20 h • 🌐</div>
+                    </div>
+                </div>
+                
+                <div class="post-content">
+                    <div class="post-body" id="finalPostContent">
+                        Loading your post...
+                    </div>
+                    
+                    <div class="post-image-container" id="imageContainer">
+                        <div class="image-loading">
+                            <div class="loading-spinner"></div>
+                            <p>Loading your generated image...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="post-stats">
+                    <div class="reactions">
+                        <span class="reaction">👍</span>
+                        <span class="reaction">❤️</span>
+                        <span class="reaction">💡</span>
+                        <span class="stats-text">1.2k • 295 comments • 19 reposts</span>
+                    </div>
+                </div>
+                
+                <div class="post-actions">
+                    <button class="action-btn">
+                        <span class="action-icon">👍</span>
+                        <span>Like</span>
+                    </button>
+                    <button class="action-btn">
+                        <span class="action-icon">💬</span>
+                        <span>Comment</span>
+                    </button>
+                    <button class="action-btn">
+                        <span class="action-icon">🔄</span>
+                        <span>Repost</span>
+                    </button>
+                    <button class="action-btn">
+                        <span class="action-icon">📤</span>
+                        <span>Send</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+    <script src="navigation.js"></script>
+    <script src="final.js"></script>
+</body>
+</html>

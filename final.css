@@ -1,0 +1,240 @@
+/* Final Post Page Styles */
+.linkedin-post-final {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.post-header {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.avatar-initial {
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.post-meta {
+    flex: 1;
+}
+
+.author-name {
+    font-weight: 600;
+    font-size: 16px;
+    color: #1a1a1a;
+    margin-bottom: 2px;
+}
+
+.post-time {
+    font-size: 13px;
+    color: #666;
+}
+
+.post-content {
+    margin-bottom: 16px;
+}
+
+.post-body {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #1a1a1a;
+    margin-bottom: 16px;
+    white-space: pre-wrap;
+}
+
+.post-body strong {
+    font-weight: 600;
+    color: #667eea;
+}
+
+.post-body .hashtags {
+    color: #667eea;
+    margin-top: 12px;
+    display: block;
+}
+
+.post-image-container {
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f5f5f5;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.generated-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+.post-stats {
+    padding: 12px 0;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 12px;
+}
+
+.reactions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.reaction {
+    font-size: 16px;
+    margin-right: 4px;
+}
+
+.stats-text {
+    font-size: 13px;
+    color: #666;
+    margin-left: 8px;
+}
+
+.post-actions {
+    display: flex;
+    justify-content: space-around;
+    gap: 8px;
+}
+
+.action-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 8px;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+}
+
+.action-btn:hover {
+    background: #f5f5f5;
+}
+
+.action-icon {
+    font-size: 16px;
+}
+
+/* Left Panel Action Buttons */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 30px 0;
+}
+
+.action-buttons .btn-secondary {
+    width: 100%;
+    text-align: left;
+    justify-content: flex-start;
+    gap: 12px;
+}
+
+.btn-create-another {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-top: 20px;
+}
+
+.btn-create-another:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Success state animations */
+.success-checkmark {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #4caf50;
+    color: white;
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
+    margin-right: 8px;
+    animation: successPulse 0.6s ease-out;
+}
+
+@keyframes successPulse {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .linkedin-post-final {
+        max-width: 100%;
+        margin: 0;
+    }
+    
+    .action-buttons .btn-secondary {
+        font-size: 14px;
+        padding: 12px 16px;
+    }
+    
+    .post-actions {
+        gap: 4px;
+    }
+    
+    .action-btn {
+        padding: 10px 6px;
+        font-size: 13px;
+    }
+    
+    .action-btn span:last-child {
+        display: none;
+    }
+}
