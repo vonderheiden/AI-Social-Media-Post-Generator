@@ -163,9 +163,22 @@ async function checkAuth() {
     }
 }
 
+// Debug function to check page state
+function debugPageState() {
+    console.log('=== Image Page Debug ===');
+    console.log('Selected quote:', selectedQuote);
+    console.log('Custom input element:', document.getElementById('customQuoteInput'));
+    console.log('Generate button:', document.getElementById('generateBtn'));
+    console.log('Form element:', document.getElementById('imageForm'));
+    console.log('Post content:', localStorage.getItem('finalPost') || localStorage.getItem('generatedPost'));
+}
+
 // Initialize
 checkAuth();
 loadPostContent();
+
+// Add debug info after page loads
+setTimeout(debugPageState, 1000);
 
 // Generate image using DALL-E
 async function generateImage(quote) {
