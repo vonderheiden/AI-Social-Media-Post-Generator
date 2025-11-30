@@ -87,6 +87,134 @@ Make it engaging, actionable, and shareable. Format it properly with line breaks
     }
 });
 
+// API endpoint for generating quotes from post content
+app.post('/api/generate-quotes', async (req, res) => {
+    const { postContent } = req.body;
+
+    if (!postContent) {
+        return res.status(400).json({ error: 'Post content is required' });
+    }
+
+    const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
+    const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
+
+    const systemPrompt = `You are an expert at extracting inspirational quotes from LinkedIn posts. Generate exactly 4 short, powerful quotes that capture the essence of the post. Each quote should be:
+- 10-15 words maximum
+- Inspirational and motivational
+- Suitable for social media images
+- Professional but engaging
+- Include a relevant author name (can be famous person or "Anonymous")
+
+Return the response as a JSON array with this exact format:
+[
+  {"text": "Quote text here", "author": "Author Name"},
+  {"text": "Quote text here", "author": "Author Name"},
+  {"text": "Quote text here", "author": "Author Name"},
+  {"text": "Quote text here", "author": "Author Name"}
+]`;
+
+    const userPrompt = `Extract 4 inspirational quotes from this LinkedIn post content: ${postContent}`;
+
+    try {
+        const response = await fetch(OPENROUTER_API_URL, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
+                'Content-Type': 'application/json',
+                'HTTP-Referer': req.headers.referer || 'https://ai-social-media-post-generator-webservice.onrender.com',
+                'X-Title': 'AI Social Media Post Generator'
+            },
+            body: JSON.stringify({
+                model: 'meta-llama/llama-3.3-70b-instruct:free',
+                messages: [
+                    {
+                        role: 'system',
+                        content: systemPrompt
+                    },
+                    {
+                        role: 'user',
+                        content: userPrompt
+                    }
+                ],
+                temperature: 0.8,
+                max_tokens: 500
+            })
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error?.message || 'OpenRouter API error');
+        }
+
+        const data = await response.json();
+        const content = data.choices[0].message.content;
+        
+        // Try to parse JSON response
+        let quotes;
+        try {
+            quotes = JSON.parse(content);
+        } catch (parseError) {
+            // Fallback if JSON parsing fails
+            quotes = [
+                { text: "Success isn't about working harder—it's about working smarter.", author: "Anonymous" },
+                { text: "Innovation distinguishes between a leader and a follower.", author: "Steve Jobs" },
+                { text: "Your network is your net worth.", author: "Porter Gale" },
+                { text: "The best time to start was yesterday. The next best time is now.", author: "Chinese Proverb" }
+            ];
+        }
+
+        return res.status(200).json({ quotes });
+    } catch (error) {
+        console.error('Error generating quotes:', error);
+        return res.status(500).json({ error: error.message });
+    }
+});
+
+// API endpoint for generating images with DALL-E
+app.post('/api/generate-image', async (req, res) => {
+    const { prompt, quote } = req.body;
+
+    if (!prompt || !quote) {
+        return res.status(400).json({ error: 'Prompt and quote are required' });
+    }
+
+    const DALLE_API_KEY = process.env.DALLE_API_KEY;
+    
+    if (!DALLE_API_KEY) {
+        return res.status(500).json({ error: 'DALL-E API key not configured' });
+    }
+
+    try {
+        const response = await fetch('https://api.openai.com/v1/images/generations', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${DALLE_API_KEY}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                model: 'dall-e-3',
+                prompt: prompt,
+                n: 1,
+                size: '1024x1024',
+                quality: 'standard'
+            })
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error?.message || 'DALL-E API error');
+        }
+
+        const data = await response.json();
+        const imageUrl = data.data[0].url;
+
+        return res.status(200).json({ imageUrl });
+    } catch (error) {
+        console.error('Error generating image:', error);
+        return res.status(500).json({ error: error.message });
+    }
+});
+
 // Serve static files from the root directory - MUST come after API routes
 app.use(express.static(__dirname));
 
