@@ -120,7 +120,7 @@
 /* Adjust page content to account for fixed header */
 .generate-page,
 .result-page {
-    padding-top: 140px;
+    padding-top: 160px;
 }
 
 .generate-container,

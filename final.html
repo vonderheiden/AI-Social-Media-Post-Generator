@@ -51,14 +51,17 @@
             <p class="instruction">You can post it today, or add it to your calendar so you can post it on a later date.</p>
             
             <div class="action-buttons">
-                <button class="btn-secondary" onclick="copyPost()">
-                    📋 Copy Post Text
+                <button class="btn-action" onclick="copyPost()" id="copyPostBtn">
+                    <span class="action-icon">📋</span>
+                    <span>Copy Post Text</span>
                 </button>
-                <button class="btn-secondary" onclick="downloadImage()">
-                    📥 Download Image
+                <button class="btn-action" onclick="downloadImage()" id="downloadBtn">
+                    <span class="action-icon">📥</span>
+                    <span>Download Image</span>
                 </button>
-                <button class="btn-secondary" onclick="copyImageUrl()">
-                    🔗 Copy Image URL
+                <button class="btn-action" onclick="copyImageUrl()" id="copyUrlBtn">
+                    <span class="action-icon">🔗</span>
+                    <span>Copy Image URL</span>
                 </button>
             </div>
             

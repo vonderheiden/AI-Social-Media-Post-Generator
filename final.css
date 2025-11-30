@@ -154,15 +154,48 @@
 .action-buttons {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
     margin: 30px 0;
 }
 
-.action-buttons .btn-secondary {
+.action-buttons .btn-action {
     width: 100%;
-    text-align: left;
-    justify-content: flex-start;
+    padding: 16px 20px;
+    background: white;
+    color: #1a1a1a;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
     gap: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.action-buttons .btn-action:hover {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+}
+
+.action-buttons .btn-action:active {
+    transform: translateY(0);
+}
+
+.action-buttons .btn-action.success {
+    background: #4caf50;
+    color: white;
+    border-color: #4caf50;
+}
+
+.action-icon {
+    font-size: 20px;
+    flex-shrink: 0;
 }
 
 .btn-create-another {
