@@ -248,9 +248,9 @@ app.post('/api/generate-image', async (req, res) => {
     }
 
     try {
-        // Create prediction with Stable Diffusion 3.5 Medium
-        // Using Prefer: wait header to wait up to 60 seconds for completion
-        const response = await fetch('https://api.replicate.com/v1/predictions', {
+        // Create prediction with Stable Diffusion 3.5 Medium (Official Model)
+        // Using the official models endpoint and Prefer: wait header for sync mode
+        const response = await fetch('https://api.replicate.com/v1/models/stability-ai/stable-diffusion-3.5-medium/predictions', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${REPLICATE_API_TOKEN}`,
@@ -258,7 +258,6 @@ app.post('/api/generate-image', async (req, res) => {
                 'Prefer': 'wait'
             },
             body: JSON.stringify({
-                model: 'stability-ai/stable-diffusion-3.5-medium',
                 input: {
                     prompt: prompt,
                     aspect_ratio: '1:1',
