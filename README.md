@@ -2,6 +2,11 @@
 
 Transform simple ideas into platform-optimized social media posts with AI-generated images. Create engaging content for LinkedIn, Facebook, X/Twitter, and Instagram in seconds.
 
+<img width="1560" height="1201" alt="Screenshot 2025-12-02 at 12 24 50 PM" src="https://github.com/user-attachments/assets/2477bce8-3008-4572-b3a7-084c679ef505" />
+
+
+
+
 ## 🔗 Try It Out
 
 - **Live Demo**: [AI Social Media Post Generator](https://ai-social-media-post-generator-webservice.onrender.com)
