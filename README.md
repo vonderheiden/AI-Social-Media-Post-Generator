@@ -10,7 +10,7 @@ Transform simple ideas into platform-optimized social media posts with AI-genera
 ## 🔗 Try It Out
 
 - **Live Demo**: [AI Social Media Post Generator](https://ai-social-media-post-generator-webservice.onrender.com)
-- **Source Code**: [GitHub Repository](https://github.com/yourusername/social-media-generator)
+
 
 ![App Screenshot](images/app-screenshot.png)
 *Generate professional social media posts with AI-powered content and custom images*
