@@ -2,9 +2,8 @@
 
 Transform simple ideas into platform-optimized social media posts with AI-generated images. Create engaging content for LinkedIn, Facebook, X/Twitter, and Instagram in seconds.
 
-<img width="1560" height="1201" alt="Screenshot 2025-12-02 at 12 24 50 PM" src="https://github.com/user-attachments/assets/2477bce8-3008-4572-b3a7-084c679ef505" />
 
-
+<img width="1890" height="1165" alt="Screenshot 2025-12-02 at 1 59 58 PM" src="https://github.com/user-attachments/assets/59468a1e-2544-4e3e-8ae9-135611386cab" />
 
 
 ## 🔗 Try It Out
