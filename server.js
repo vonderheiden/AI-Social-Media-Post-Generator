@@ -249,7 +249,8 @@ app.post('/api/generate-image', async (req, res) => {
 
     try {
         // Create prediction with Stable Diffusion 3.5 Medium
-        const response = await fetch('https://api.replicate.com/v1/models/stability-ai/stable-diffusion-3.5-medium/predictions', {
+        // Using Prefer: wait header to wait up to 60 seconds for completion
+        const response = await fetch('https://api.replicate.com/v1/predictions', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${REPLICATE_API_TOKEN}`,
@@ -257,6 +258,7 @@ app.post('/api/generate-image', async (req, res) => {
                 'Prefer': 'wait'
             },
             body: JSON.stringify({
+                model: 'stability-ai/stable-diffusion-3.5-medium',
                 input: {
                     prompt: prompt,
                     aspect_ratio: '1:1',
@@ -270,31 +272,41 @@ app.post('/api/generate-image', async (req, res) => {
 
         if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(errorData.detail || 'Replicate API error');
+            console.error('Replicate API error:', errorData);
+            throw new Error(errorData.detail || `Replicate API error: ${response.status}`);
         }
 
-        const data = await response.json();
+        const prediction = await response.json();
         
-        console.log('Replicate API response:', JSON.stringify(data, null, 2));
+        console.log('Replicate prediction status:', prediction.status);
+        console.log('Replicate prediction output:', prediction.output);
         
-        // The API returns the image URL in the output array
-        let imageUrl = data.output?.[0];
-        
-        // Handle different response formats
-        if (!imageUrl && data.output && typeof data.output === 'string') {
-            imageUrl = data.output;
+        // Check prediction status
+        if (prediction.status === 'failed') {
+            throw new Error(`Prediction failed: ${prediction.error || 'Unknown error'}`);
         }
         
-        if (!imageUrl && data.urls && data.urls.get) {
-            imageUrl = data.urls.get;
+        // If still processing, return error (shouldn't happen with Prefer: wait)
+        if (prediction.status === 'starting' || prediction.status === 'processing') {
+            throw new Error('Prediction timed out. Please try again.');
+        }
+        
+        // Extract image URL from output
+        // Output is an array of URLs for Stable Diffusion models
+        let imageUrl = null;
+        
+        if (Array.isArray(prediction.output) && prediction.output.length > 0) {
+            imageUrl = prediction.output[0];
+        } else if (typeof prediction.output === 'string') {
+            imageUrl = prediction.output;
         }
         
         if (!imageUrl) {
-            console.error('Unexpected Replicate response structure:', data);
-            throw new Error('No image URL returned from Replicate. Response: ' + JSON.stringify(data));
+            console.error('No image URL in prediction:', prediction);
+            throw new Error('No image URL returned from Replicate');
         }
 
-        console.log('Image URL extracted:', imageUrl);
+        console.log('Successfully generated image:', imageUrl);
         return res.status(200).json({ imageUrl });
     } catch (error) {
         console.error('Error generating image:', error);
