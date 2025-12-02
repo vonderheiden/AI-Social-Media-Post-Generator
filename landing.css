@@ -219,6 +219,10 @@ Hero Section */
     text-align: center;
 }
 
+.problem-item p {
+    color: #1a1a1a;
+}
+
 .problem-icon {
     font-size: 48px;
     display: block;
