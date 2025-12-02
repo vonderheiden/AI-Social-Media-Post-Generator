@@ -758,11 +758,35 @@ Why Us Section */
     animation: float 3s ease-in-out infinite;
 }
 
+.hero-image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+}
+
 .intro-visual svg {
     animation: float 3s ease-in-out infinite 0.5s;
 }
 
+.intro-image {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    display: block;
+    animation: float 3s ease-in-out infinite 0.5s;
+}
+
 .puzzle-illustration svg {
+    animation: float 3s ease-in-out infinite 1s;
+}
+
+.workflow-image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
     animation: float 3s ease-in-out infinite 1s;
 }
 

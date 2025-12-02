@@ -1,0 +1,8 @@
+To complete the hero image replacement:
+
+1. Save the attached image as "hero-social-media.png" in the root directory of your project
+2. The HTML has been updated to reference this image
+3. Once saved, commit and push the changes
+
+Alternatively, if you want to use a different filename, update line in landing.html:
+<img src="YOUR_FILENAME_HERE.png" alt="Social media engagement illustration" class="hero-image">
