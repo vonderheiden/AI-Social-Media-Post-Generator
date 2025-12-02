@@ -146,44 +146,35 @@ Hero Section */
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
 }
 
 /* Social Media Logos */
 .social-logos {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 12px;
-    margin-top: 10px;
-}
-
-.social-logos-label {
-    font-size: 14px;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.9);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    margin-top: 20px;
 }
 
 .logos-container {
     display: flex;
-    gap: 16px;
+    gap: 20px;
     align-items: center;
+    justify-content: center;
 }
 
 .social-logo {
-    height: 40px;
-    width: 40px;
+    height: 48px;
+    width: 48px;
     object-fit: contain;
-    opacity: 0.9;
     transition: all 0.3s ease;
     filter: brightness(0) invert(1);
+    opacity: 0.95;
 }
 
 .social-logo:hover {
     opacity: 1;
-    transform: translateY(-2px);
+    transform: translateY(-3px) scale(1.1);
 }
 
 .person-with-highlighter {
