@@ -25,7 +25,7 @@ As content creators and marketers struggle with the constant demand for fresh, e
 
 Building this project taught me valuable lessons about:
 
-- **AI Integration Architecture** - Orchestrating multiple AI services (OpenRouter's Llama 3.3 70B and OpenAI's DALL-E 3) to work seamlessly together
+- **AI Integration Architecture** - Orchestrating multiple AI services (OpenRouter's Llama 3.3 70B and Replicate's Stable Diffusion 3.5) to work seamlessly together
 - **Platform-Specific Optimization** - Each social media platform has unique characteristics: LinkedIn's professional tone requires $\text{length} \in [1300, 3000]$ characters, while Twitter demands $\text{length} < 280$
 - **Progressive User Experience** - Breaking complex workflows into digestible steps improves completion rates
 - **Authentication Flows** - Implementing secure, user-friendly auth with Supabase while maintaining session state across multiple pages
@@ -75,7 +75,7 @@ Where each platform has optimized parameters for maximum engagement.
 
 - **Multi-Platform Support** - Generate content optimized for LinkedIn, Facebook, X/Twitter, and Instagram
 - **AI-Powered Content** - Leverages OpenRouter API (Llama 3.3 70B, DeepSeek) for intelligent post generation
-- **Custom Image Generation** - DALL-E 3 integration creates unique visuals for your posts
+- **Custom Image Generation** - Stable Diffusion 3.5 Medium integration creates unique visuals for your posts
 - **Platform-Specific Optimization** - Automatic tone, length, and style adjustments per platform
 - **Quote Extraction** - Intelligently pulls key quotes for image overlays
 - **User Authentication** - Secure sign-up and login via Supabase Auth
@@ -102,7 +102,7 @@ Where each platform has optimized parameters for maximum engagement.
 ### Cloud Services & APIs
 - **Supabase** - Backend-as-a-Service for authentication and user management
 - **OpenRouter API** - AI content generation using Llama 3.3 70B (70 billion parameters) and DeepSeek models
-- **OpenAI API** - DALL-E 3 for AI image generation
+- **Replicate API** - Stable Diffusion 3.5 Medium for AI image generation
 - **Render** - Cloud platform for deployment and hosting
 
 ### Key Technologies
@@ -123,7 +123,7 @@ Where each platform has optimized parameters for maximum engagement.
 - npm or yarn
 - Supabase account
 - OpenRouter API key
-- OpenAI API key
+- Replicate API token
 
 ### Setup
 
@@ -143,7 +143,7 @@ npm install
 Create a `.env` file in the root directory:
 ```bash
 OPENROUTER_API_KEY=sk-or-v1-...
-DALLE_API_KEY=sk-...
+REPLICATE_API_TOKEN=r8_...
 PORT=3000
 SUPABASE_URL=https://pkibhlyvjtzikvyjmrdm.supabase.co
 SUPABASE_ANON_KEY=eyJ...
@@ -178,7 +178,7 @@ Navigate to `http://localhost:3000`
 
 ### Environment Variables Required
 - `OPENROUTER_API_KEY`
-- `DALLE_API_KEY`
+- `REPLICATE_API_TOKEN`
 - `SUPABASE_URL`
 - `SUPABASE_ANON_KEY`
 - `PORT` (optional, defaults to 3000)
@@ -234,7 +234,7 @@ This project is open source and available under the MIT License.
 
 - [Supabase Documentation](https://supabase.com/docs)
 - [OpenRouter API](https://openrouter.ai/)
-- [OpenAI DALL-E](https://platform.openai.com/docs/guides/images)
+- [Replicate Stable Diffusion](https://replicate.com/stability-ai/stable-diffusion-3.5-medium)
 
 ---
 

@@ -233,7 +233,7 @@ Return the response as a JSON array with this exact format:
     }
 });
 
-// API endpoint for generating images with DALL-E
+// API endpoint for generating images with Replicate Stable Diffusion 3.5
 app.post('/api/generate-image', async (req, res) => {
     const { prompt, quote } = req.body;
 
@@ -241,35 +241,46 @@ app.post('/api/generate-image', async (req, res) => {
         return res.status(400).json({ error: 'Prompt and quote are required' });
     }
 
-    const DALLE_API_KEY = process.env.DALLE_API_KEY;
+    const REPLICATE_API_TOKEN = process.env.REPLICATE_API_TOKEN;
     
-    if (!DALLE_API_KEY) {
-        return res.status(500).json({ error: 'DALL-E API key not configured' });
+    if (!REPLICATE_API_TOKEN) {
+        return res.status(500).json({ error: 'Replicate API token not configured' });
     }
 
     try {
-        const response = await fetch('https://api.openai.com/v1/images/generations', {
+        // Create prediction with Stable Diffusion 3.5 Medium
+        const response = await fetch('https://api.replicate.com/v1/models/stability-ai/stable-diffusion-3.5-medium/predictions', {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${DALLE_API_KEY}`,
-                'Content-Type': 'application/json'
+                'Authorization': `Bearer ${REPLICATE_API_TOKEN}`,
+                'Content-Type': 'application/json',
+                'Prefer': 'wait'
             },
             body: JSON.stringify({
-                model: 'dall-e-3',
-                prompt: prompt,
-                n: 1,
-                size: '1024x1024',
-                quality: 'standard'
+                input: {
+                    prompt: prompt,
+                    aspect_ratio: '1:1',
+                    output_format: 'png',
+                    output_quality: 90,
+                    num_inference_steps: 28,
+                    guidance_scale: 3.5
+                }
             })
         });
 
         if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(errorData.error?.message || 'DALL-E API error');
+            throw new Error(errorData.detail || 'Replicate API error');
         }
 
         const data = await response.json();
-        const imageUrl = data.data[0].url;
+        
+        // The API returns the image URL in the output array
+        const imageUrl = data.output?.[0];
+        
+        if (!imageUrl) {
+            throw new Error('No image URL returned from Replicate');
+        }
 
         return res.status(200).json({ imageUrl });
     } catch (error) {
