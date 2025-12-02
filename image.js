@@ -209,13 +209,21 @@ async function generateImage(quote) {
 
         const data = await response.json();
         
+        console.log('Image generation response:', data);
+        
+        if (!data.imageUrl) {
+            throw new Error('No image URL in response: ' + JSON.stringify(data));
+        }
+        
         // Store image URL and navigate to final page
         localStorage.setItem('generatedImageUrl', data.imageUrl);
         localStorage.setItem('finalQuote', quote);
         
+        console.log('Stored image URL:', data.imageUrl);
+        
         showNotification('Image generated successfully!', 'success');
         
-        // Navigate to final page (to be created)
+        // Navigate to final page
         setTimeout(() => {
             window.location.href = 'final.html';
         }, 1500);

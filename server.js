@@ -275,13 +275,26 @@ app.post('/api/generate-image', async (req, res) => {
 
         const data = await response.json();
         
+        console.log('Replicate API response:', JSON.stringify(data, null, 2));
+        
         // The API returns the image URL in the output array
-        const imageUrl = data.output?.[0];
+        let imageUrl = data.output?.[0];
+        
+        // Handle different response formats
+        if (!imageUrl && data.output && typeof data.output === 'string') {
+            imageUrl = data.output;
+        }
+        
+        if (!imageUrl && data.urls && data.urls.get) {
+            imageUrl = data.urls.get;
+        }
         
         if (!imageUrl) {
-            throw new Error('No image URL returned from Replicate');
+            console.error('Unexpected Replicate response structure:', data);
+            throw new Error('No image URL returned from Replicate. Response: ' + JSON.stringify(data));
         }
 
+        console.log('Image URL extracted:', imageUrl);
         return res.status(200).json({ imageUrl });
     } catch (error) {
         console.error('Error generating image:', error);

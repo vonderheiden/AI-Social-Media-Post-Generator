@@ -89,6 +89,15 @@
     text-align: center;
 }
 
+.image-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    text-align: center;
+    color: #e53e3e;
+}
+
 .generated-image {
     width: 100%;
     height: auto;

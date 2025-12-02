@@ -20,11 +20,31 @@ function loadFinalContent() {
     const imageContainer = document.getElementById('imageContainer');
     
     console.log('Loading final content. Image URL:', generatedImageUrl);
+    console.log('Image URL type:', typeof generatedImageUrl);
+    console.log('Image URL length:', generatedImageUrl ? generatedImageUrl.length : 0);
     
-    if (generatedImageUrl && generatedImageUrl.trim() !== '') {
-        imageContainer.innerHTML = `
-            <img src="${generatedImageUrl}" alt="Generated AI Image" class="generated-image" />
-        `;
+    if (generatedImageUrl && generatedImageUrl.trim() !== '' && generatedImageUrl !== 'null' && generatedImageUrl !== 'undefined') {
+        const img = document.createElement('img');
+        img.src = generatedImageUrl;
+        img.alt = 'Generated AI Image';
+        img.className = 'generated-image';
+        
+        img.onerror = function() {
+            console.error('Failed to load image from URL:', generatedImageUrl);
+            imageContainer.innerHTML = `
+                <div class="image-error">
+                    <p>⚠️ Failed to load generated image</p>
+                    <p style="font-size: 12px; color: #666; margin-top: 8px;">Image URL: ${generatedImageUrl.substring(0, 50)}...</p>
+                </div>
+            `;
+        };
+        
+        img.onload = function() {
+            console.log('Image loaded successfully!');
+        };
+        
+        imageContainer.innerHTML = '';
+        imageContainer.appendChild(img);
     } else {
         // Create a sample image for testing (placeholder with downloadable content)
         const canvas = document.createElement('canvas');
