@@ -154,6 +154,8 @@ Hero Section */
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    width: 100%;
+    min-height: 60px;
 }
 
 .logos-container {
@@ -169,7 +171,10 @@ Hero Section */
     object-fit: contain;
     transition: all 0.3s ease;
     filter: brightness(0) invert(1);
-    opacity: 0.95;
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 4px;
 }
 
 .social-logo:hover {
