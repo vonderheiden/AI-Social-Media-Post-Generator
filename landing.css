@@ -425,24 +425,45 @@ Why Us Section */
     font-size: 36px;
     font-weight: 700;
     text-align: center;
-    margin-bottom: 48px;
+    margin-bottom: 16px;
 }
 
-.reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
+.reviews-subtitle {
+    text-align: center;
+    font-size: 18px;
+    color: #4a5568;
+    margin-bottom: 48px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.testimonials-wrapper {
     margin-bottom: 60px;
 }
 
-.review {
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-bottom: 40px;
+}
+
+.testimonial-card {
     background: white;
     padding: 32px;
     border-radius: 12px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
-.review-avatar {
+.reviewer-meta {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.avatar-initials {
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -450,32 +471,93 @@ Why Us Section */
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
-    margin-bottom: 16px;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
 }
 
-.review-quote {
-    font-size: 18px;
-    font-weight: 600;
-    color: #667eea;
-    margin-bottom: 12px;
+.reviewer-info {
+    flex: 1;
 }
 
-.review p {
-    color: #4a5568;
-    line-height: 1.6;
-    margin-bottom: 16px;
-}
-
-.review-rating {
+.reviewer-name {
     font-size: 16px;
     margin-bottom: 8px;
+    color: #1a1a1a;
 }
 
-.review-author {
-    font-size: 14px;
-    color: #666;
-    font-style: italic;
+.reviewer-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #E8F4FD;
+    color: #667eea;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.testimonial-quote {
+    color: #4a5568;
+    line-height: 1.7;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.testimonial-quote strong {
+    color: #667eea;
+    font-weight: 600;
+}
+
+.pilot-badge {
+    display: inline-block;
+    padding: 6px 14px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.testimonial-cta {
+    text-align: center;
+    padding: 40px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.testimonial-cta p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #1a1a1a;
+}
+
+.btn-secondary {
+    background: white;
+    color: #667eea;
+    border: 2px solid #667eea;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
 .video-review-illustration {
@@ -856,7 +938,7 @@ Why Us Section */
     
     .benefits-grid,
     .steps,
-    .reviews-grid {
+    .testimonials-grid {
         grid-template-columns: 1fr;
         gap: 24px;
     }
