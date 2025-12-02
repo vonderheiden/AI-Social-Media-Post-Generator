@@ -794,6 +794,15 @@ Why Us Section */
     animation: float 3s ease-in-out infinite 1.5s;
 }
 
+.reviews-image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    animation: float 3s ease-in-out infinite 1.5s;
+}
+
 .calendar-svg {
     width: 80px;
     height: 80px;
