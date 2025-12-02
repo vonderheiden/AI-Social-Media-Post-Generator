@@ -189,7 +189,7 @@ async function generateImage(quote) {
     generateBtn.disabled = true;
     generateBtn.innerHTML = '<div class="loading-spinner" style="width: 20px; height: 20px; margin-right: 8px; display: inline-block;"></div>Generating Image...';
     
-    const prompt = `A realistic city sidewalk scene outside a cozy, independent bookstore or library. A quote is displayed prominently on a clean white brick wall in an elegant serif font: "${quote}". The window reveals shelves filled with books inside, warm interior lighting glowing softly. Tall trees and square planters line the sidewalk, casting gentle shadows in the late afternoon light. The vibe is intellectual, calm, and inspirational—perfect for thoughtful social media quotes.`;
+    const prompt = `A realistic street scene in a modern urban setting during the day. A large, bold mural or wall poster on the side of a brick building displays the following quote in black capital letters: "${quote}". The area has people walking, jogging, and riding bicycles, with a nearby gym or storefront visible. The design is bold and motivational, perfect for social media inspiration posts. Natural lighting, city life atmosphere.`;
     
     try {
         const response = await fetch('/api/generate-image', {
