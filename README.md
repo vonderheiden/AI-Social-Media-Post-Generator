@@ -24,7 +24,7 @@ As content creators and marketers struggle with the constant demand for fresh, e
 
 Building this project taught me valuable lessons about:
 
-- **AI Integration Architecture** - Orchestrating multiple AI services (OpenRouter's Llama 3.3 70B and Replicate's Stable Diffusion 3.5) to work seamlessly together
+- **AI Integration Architecture** - Orchestrating multiple AI services (OpenRouter's Llama 3.3 70B and Replicate's Stable Diffusion 3.5 Large) to work seamlessly together
 - **Platform-Specific Optimization** - Each social media platform has unique characteristics: LinkedIn's professional tone requires $\text{length} \in [1300, 3000]$ characters, while Twitter demands $\text{length} < 280$
 - **Progressive User Experience** - Breaking complex workflows into digestible steps improves completion rates
 - **Authentication Flows** - Implementing secure, user-friendly auth with Supabase while maintaining session state across multiple pages
@@ -74,7 +74,7 @@ Where each platform has optimized parameters for maximum engagement.
 
 - **Multi-Platform Support** - Generate content optimized for LinkedIn, Facebook, X/Twitter, and Instagram
 - **AI-Powered Content** - Leverages OpenRouter API (Llama 3.3 70B, DeepSeek) for intelligent post generation
-- **Custom Image Generation** - Stable Diffusion 3.5 Medium integration creates unique visuals for your posts
+- **Custom Image Generation** - Stable Diffusion 3.5 Large integration creates unique visuals for your posts
 - **Platform-Specific Optimization** - Automatic tone, length, and style adjustments per platform
 - **Quote Extraction** - Intelligently pulls key quotes for image overlays
 - **User Authentication** - Secure sign-up and login via Supabase Auth
@@ -101,7 +101,7 @@ Where each platform has optimized parameters for maximum engagement.
 ### Cloud Services & APIs
 - **Supabase** - Backend-as-a-Service for authentication and user management
 - **OpenRouter API** - AI content generation using Llama 3.3 70B (70 billion parameters) and DeepSeek models
-- **Replicate API** - Stable Diffusion 3.5 Medium for AI image generation
+- **Replicate API** - Stable Diffusion 3.5 Large for AI image generation
 - **Render** - Cloud platform for deployment and hosting
 
 ### Key Technologies
@@ -233,7 +233,7 @@ This project is open source and available under the MIT License.
 
 - [Supabase Documentation](https://supabase.com/docs)
 - [OpenRouter API](https://openrouter.ai/)
-- [Replicate Stable Diffusion](https://replicate.com/stability-ai/stable-diffusion-3.5-medium)
+- [Replicate Stable Diffusion](https://replicate.com/stability-ai/stable-diffusion-3.5-large)
 
 ---
 

@@ -10,7 +10,7 @@ AI Social Media Post Generator - transforms topic ideas into platform-optimized 
 - **Multi-platform generation**: LinkedIn, Facebook, X/Twitter, Instagram
 - **AI content creation**: OpenRouter API (Llama 3.3 70B, DeepSeek models)
 - **Quote extraction**: Pulls key quotes from generated content
-- **Image generation**: Replicate Stable Diffusion 3.5 Medium for visual content
+- **Image generation**: Replicate Stable Diffusion 3.5 Large for visual content
 - **Authentication**: Supabase Auth for user management
 - **Progressive workflow**: Step-by-step guided experience
 

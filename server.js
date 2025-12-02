@@ -248,9 +248,9 @@ app.post('/api/generate-image', async (req, res) => {
     }
 
     try {
-        // Create prediction with Stable Diffusion 3.5 Medium (Official Model)
+        // Create prediction with Stable Diffusion 3.5 Large (Official Model)
         // Using the official models endpoint and Prefer: wait header for sync mode
-        const response = await fetch('https://api.replicate.com/v1/models/stability-ai/stable-diffusion-3.5-medium/predictions', {
+        const response = await fetch('https://api.replicate.com/v1/models/stability-ai/stable-diffusion-3.5-large/predictions', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${REPLICATE_API_TOKEN}`,

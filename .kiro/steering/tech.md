@@ -10,7 +10,7 @@ inclusion: always
 - **Authentication**: Supabase Auth (client-side SDK)
 - **AI Services**: 
   - OpenRouter API for text generation (Llama 3.3 70B, DeepSeek models)
-  - Replicate API for image generation (Stable Diffusion 3.5 Medium)
+  - Replicate API for image generation (Stable Diffusion 3.5 Large)
 - **Deployment**: Render web service
 
 ## Critical Architecture Rules
@@ -93,10 +93,10 @@ app.post('/api/endpoint', async (req, res) => {
 - Models: `meta-llama/llama-3.3-70b-instruct`, `deepseek/deepseek-chat`
 - Use platform-specific system prompts for content generation
 
-### Replicate Stable Diffusion 3.5 Medium
-- Endpoint: `https://api.replicate.com/v1/models/stability-ai/stable-diffusion-3.5-medium/predictions`
+### Replicate Stable Diffusion 3.5 Large
+- Endpoint: `https://api.replicate.com/v1/models/stability-ai/stable-diffusion-3.5-large/predictions`
 - Auth: `Authorization: Bearer ${process.env.REPLICATE_API_TOKEN}`
-- Model: `stability-ai/stable-diffusion-3.5-medium`
+- Model: `stability-ai/stable-diffusion-3.5-large`
 - Aspect Ratio: `1:1` (square format for social media)
 - Output Format: `png`
 - Inference Steps: 28 (default)
