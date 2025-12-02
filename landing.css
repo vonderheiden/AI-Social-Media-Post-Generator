@@ -755,7 +755,7 @@ Why Us Section */
 }
 
 .hero-illustration {
-    animation: float 3s ease-in-out infinite;
+    /* Animation disabled */
 }
 
 .hero-image {
@@ -766,7 +766,7 @@ Why Us Section */
 }
 
 .intro-visual svg {
-    animation: float 3s ease-in-out infinite 0.5s;
+    /* Animation disabled */
 }
 
 .intro-image {
@@ -774,11 +774,10 @@ Why Us Section */
     max-width: 400px;
     height: auto;
     display: block;
-    animation: float 3s ease-in-out infinite 0.5s;
 }
 
 .puzzle-illustration svg {
-    animation: float 3s ease-in-out infinite 1s;
+    /* Animation disabled */
 }
 
 .workflow-image {
@@ -787,11 +786,10 @@ Why Us Section */
     height: auto;
     display: block;
     margin: 0 auto;
-    animation: float 3s ease-in-out infinite 1s;
 }
 
 .video-review-illustration svg {
-    animation: float 3s ease-in-out infinite 1.5s;
+    /* Animation disabled */
 }
 
 .reviews-image {
@@ -800,7 +798,6 @@ Why Us Section */
     height: auto;
     display: block;
     margin: 0 auto;
-    animation: float 3s ease-in-out infinite 1.5s;
 }
 
 .calendar-svg {
