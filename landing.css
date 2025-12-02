@@ -148,32 +148,36 @@ Hero Section */
     align-items: center;
 }
 
+/* Hero Bottom Row - Stats and Logos */
+.hero-bottom-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 40px;
+}
+
 /* Social Media Logos */
 .social-logos {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    margin-top: 20px;
-    width: 100%;
-    min-height: 60px;
 }
 
 .logos-container {
     display: flex;
-    gap: 20px;
+    gap: 24px;
     align-items: center;
-    justify-content: center;
 }
 
 .social-logo {
-    height: 48px;
-    width: 48px;
+    height: 96px;
+    width: 96px;
     object-fit: contain;
     transition: all 0.3s ease;
     opacity: 1;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-    padding: 8px;
+    background: transparent;
+    border: none;
 }
 
 .social-logo:hover {
