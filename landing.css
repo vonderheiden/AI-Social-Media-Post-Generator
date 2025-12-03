@@ -418,29 +418,28 @@ Why Us Section */
 .workflow-screenshots {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    gap: 30px;
+    align-items: center;
+    gap: 20px;
     margin-top: 60px;
     flex-wrap: wrap;
 }
 
 .screenshot-item {
     flex: 1;
-    min-width: 280px;
-    max-width: 350px;
+    min-width: 250px;
+    max-width: 380px;
 }
 
 .workflow-screenshot {
     width: 100%;
     height: auto;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0.95;
 }
 
 .workflow-screenshot:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+    opacity: 1;
 }
 
 .person-with-puzzle {
