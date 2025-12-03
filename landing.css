@@ -415,8 +415,32 @@ Why Us Section */
     line-height: 1.6;
 }
 
-.puzzle-illustration {
-    text-align: center;
+.workflow-screenshots {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    margin-top: 60px;
+    flex-wrap: wrap;
+}
+
+.screenshot-item {
+    flex: 1;
+    min-width: 280px;
+    max-width: 350px;
+}
+
+.workflow-screenshot {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.workflow-screenshot:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
 
 .person-with-puzzle {
