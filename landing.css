@@ -160,25 +160,11 @@ Hero Section */
     width: 100%;
 }
 
-.logos-container {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    justify-content: center;
-}
-
-.social-logo {
-    height: 50px;
-    width: 50px;
+.social-logos-group {
+    height: 60px;
+    width: auto;
     object-fit: contain;
-    transition: all 0.3s ease;
-    opacity: 0.9;
-    mix-blend-mode: multiply;
-}
-
-.social-logo:hover {
-    opacity: 1;
-    transform: scale(1.1);
+    opacity: 0.95;
 }
 
 .social-logo:hover {
