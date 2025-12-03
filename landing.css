@@ -141,51 +141,44 @@ Hero Section */
 .hero-visual {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-}
-
-/* Hero Bottom Row - Stats and Logos */
-.hero-bottom-row {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
-    width: 100%;
-    margin-top: 40px;
-    gap: 0;
 }
 
 .hero-stats {
     display: flex;
-    gap: 60px;
+    gap: 40px;
+    margin-top: 40px;
 }
 
-/* Social Media Logos */
+/* Social Media Logos - positioned under illustration */
 .social-logos {
     display: flex;
-    align-items: flex-end;
-    margin-left: 60px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
 }
 
 .logos-container {
     display: flex;
-    gap: 16px;
+    gap: 20px;
     align-items: center;
+    justify-content: center;
 }
 
 .social-logo {
-    height: 60px;
-    width: 60px;
+    height: 50px;
+    width: 50px;
     object-fit: contain;
     transition: all 0.3s ease;
     opacity: 0.9;
     mix-blend-mode: multiply;
-    filter: drop-shadow(0 0 0 transparent);
 }
 
 .social-logo:hover {
     opacity: 1;
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 .social-logo:hover {
