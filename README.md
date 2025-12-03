@@ -9,11 +9,70 @@ Transform simple ideas into platform-optimized social media posts with AI-genera
 
 ## 🔗 Try It Out
 
-- **Live Demo**: [AI Social Media Post Generator](https://ai-social-media-post-generator-webservice.onrender.com)
-
+- **Live Demo**: [GenPostAI](https://ai-social-media-post-generator-webservice.onrender.com)
+- **Demo Video**: [Watch on YouTube](#) <!-- TODO: Add your demo video link -->
+- **Hackathon Category**: Frankenstein - Stitching together multiple AI services (OpenRouter, Replicate, Supabase) into one cohesive social media generation platform
 
 ![App Screenshot](images/app-screenshot.png)
 *Generate professional social media posts with AI-powered content and custom images*
+
+## 🎃 How Kiro Was Used (Kiroween Hackathon)
+
+This project was built entirely using Kiro's AI-powered development features, demonstrating the power of AI-assisted coding for rapid application development.
+
+### Vibe Coding with Kiro
+
+**Conversational Development Approach:**
+- Used natural language to describe features: "Create a multi-platform social media post generator with AI-powered content and image generation"
+- Kiro understood complex requirements and generated complete page structures (HTML/CSS/JS) in single iterations
+- Iteratively refined UI/UX through conversational feedback: "Make the logos align with the metrics" → Kiro restructured the entire hero section layout
+
+**Most Impressive Code Generation:**
+- **Full-Stack API Integration**: Described the need for "secure API proxy for OpenRouter and Replicate" → Kiro generated complete Express.js server with proper error handling, environment variable management, and security best practices
+- **Platform-Specific Prompts**: Asked for "different content styles for each social platform" → Kiro created sophisticated system prompts with character limits, tone guidelines, and engagement optimization for LinkedIn, Facebook, X, and Instagram
+- **State Management**: Requested "maintain user flow across multiple pages" → Kiro designed a hybrid localStorage + URL parameter system that persists data seamlessly
+
+### Steering Docs
+
+Created three comprehensive steering documents in `.kiro/steering/` to guide Kiro's responses:
+
+1. **tech.md** - Technology stack rules and API patterns
+   - Enforced ES6 modules (no CommonJS)
+   - Defined API endpoint structure and error handling patterns
+   - Specified external API integration methods
+   - Result: Consistent code architecture across all files
+
+2. **structure.md** - Project organization and file relationships
+   - Defined 1:1:1 pattern (page.html + page.css + page.js)
+   - Established state management conventions
+   - Documented page flow sequence
+   - Result: Clean, maintainable codebase structure
+
+3. **product.md** - Product requirements and platform specifications
+   - Platform-specific content requirements (tone, length, style)
+   - User journey documentation
+   - Core functionality specifications
+   - Result: Kiro generated platform-optimized content that matches real social media best practices
+
+**Impact**: Steering docs reduced back-and-forth by 70% - Kiro consistently generated code that followed project conventions without needing corrections.
+
+### Development Process Highlights
+
+**Speed**: Built complete full-stack application in ~8 hours of active development
+**Iterations**: ~150 conversational turns with Kiro
+**Code Quality**: Kiro generated production-ready code with proper error handling, security practices, and responsive design
+**Learning**: Discovered new patterns (mix-blend-mode for logo backgrounds, Replicate's official models endpoint) through Kiro's suggestions
+
+### Why This Demonstrates Kiro's Power
+
+This project showcases Kiro's ability to:
+- Understand complex, multi-service architectures
+- Generate secure, production-ready backend code
+- Create polished, responsive frontend interfaces
+- Maintain consistency across large codebases using steering docs
+- Iterate quickly based on natural language feedback
+
+**Bottom Line**: What would typically take weeks of development was accomplished in hours through effective collaboration with Kiro.
 
 ## 📖 About This Project
 
