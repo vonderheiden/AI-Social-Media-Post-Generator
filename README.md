@@ -259,24 +259,24 @@ Navigate to `http://localhost:3000`
 └── .env                   # Environment variables
 ```
 
-## 🎨 Platform-Specific Features
+## 🎨 Social Media Platform-Specific Post Features
 
-### LinkedIn
+### LinkedIn Posts
 - Professional, authoritative tone
 - 1300-3000 characters
 - Thought leadership content
 
-### Facebook
+### Facebook Posts
 - Casual, conversational tone
 - 40-80 words
 - Community-focused storytelling
 
-### X (Twitter)
+### X (Twitter) Posts
 - Punchy, direct tone
 - Under 280 characters
 - Concise insights with hashtags
 
-### Instagram
+### Instagram Posts
 - Visual-first, expressive tone
 - 138-150 characters or longer storytelling
 - Aesthetic language with emojis
