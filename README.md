@@ -10,7 +10,7 @@ Transform simple ideas into platform-optimized social media posts with AI-genera
 ## 🔗 Try It Out
 
 - **Live Demo**: [GenPostAI](https://ai-social-media-post-generator-webservice.onrender.com)
-- **Demo Video**: [Watch on YouTube](#) <!-- TODO: Add your demo video link -->
+- **Demo Video**: [Watch on YouTube](https://youtu.be/GvmBHMp0BVM?si=rmU3uZWIafztBN3X) 
 - **Hackathon Category**: Frankenstein - Stitching together multiple AI services (OpenRouter, Replicate, Supabase) into one cohesive social media generation platform
 
 ![App Screenshot](images/app-screenshot.png)
