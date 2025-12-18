@@ -65,20 +65,8 @@ document.getElementById('authModal').addEventListener('click', function(e) {
 
 // Initialize Supabase and handle auth forms
 document.addEventListener('DOMContentLoaded', async function() {
-    // Wait for Supabase to be initialized from app.js
-    let retries = 0;
-    while (!window.supabase && retries < 50) {
-        await new Promise(resolve => setTimeout(resolve, 100));
-        retries++;
-    }
-    
-    if (!window.supabase) {
-        console.error('Supabase not loaded after 5 seconds');
-        showNotification('Authentication service unavailable. Please refresh the page.', 'error');
-        return;
-    }
-    
-    console.log('Supabase initialized successfully');
+    // Initialize Supabase
+    await initSupabase();
     
     // Handle Sign In form
     document.getElementById('signInForm').addEventListener('submit', async (e) => {
@@ -86,27 +74,22 @@ document.addEventListener('DOMContentLoaded', async function() {
         const email = document.getElementById('signInEmail').value;
         const password = document.getElementById('signInPassword').value;
 
-        try {
-            const { data, error } = await supabase.auth.signInWithPassword({
-                email,
-                password
-            });
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email,
+            password
+        });
 
-            if (error) {
-                if (error.message.includes('Email not confirmed')) {
-                    showNotification('Please confirm your email address before signing in. Check your inbox for the confirmation link.', 'error');
-                } else {
-                    showNotification('Error: ' + error.message, 'error');
-                }
+        if (error) {
+            if (error.message.includes('Email not confirmed')) {
+                showNotification('Please confirm your email address before signing in. Check your inbox for the confirmation link.', 'error');
             } else {
-                showNotification('Welcome back!', 'success');
-                setTimeout(() => {
-                    window.location.href = 'generate.html';
-                }, 1000);
+                showNotification('Error: ' + error.message, 'error');
             }
-        } catch (err) {
-            console.error('Sign in error:', err);
-            showNotification('Sign in failed. Please try again.', 'error');
+        } else {
+            showNotification('Welcome back!', 'success');
+            setTimeout(() => {
+                window.location.href = 'generate.html';
+            }, 1000);
         }
     });
 
@@ -116,31 +99,26 @@ document.addEventListener('DOMContentLoaded', async function() {
         const email = document.getElementById('signUpEmail').value;
         const password = document.getElementById('signUpPassword').value;
 
-        try {
-            const { data, error } = await supabase.auth.signUp({
-                email,
-                password,
-                options: {
-                    emailRedirectTo: window.location.origin + '/generate.html'
-                }
-            });
-
-            if (error) {
-                showNotification('Error: ' + error.message, 'error');
-            } else if (data?.user) {
-                if (data.user.identities && data.user.identities.length === 0) {
-                    showNotification('This email is already registered. Please sign in instead.', 'info');
-                    showSignIn();
-                } else {
-                    showNotification('Account created! Please check your email to confirm your account.', 'success');
-                    setTimeout(() => {
-                        hideAuthModal();
-                    }, 2000);
-                }
+        const { data, error } = await supabase.auth.signUp({
+            email,
+            password,
+            options: {
+                emailRedirectTo: window.location.origin + '/generate.html'
             }
-        } catch (err) {
-            console.error('Sign up error:', err);
-            showNotification('Sign up failed. Please try again.', 'error');
+        });
+
+        if (error) {
+            showNotification('Error: ' + error.message, 'error');
+        } else if (data?.user) {
+            if (data.user.identities && data.user.identities.length === 0) {
+                showNotification('This email is already registered. Please sign in instead.', 'info');
+                showSignIn();
+            } else {
+                showNotification('Account created! Please check your email to confirm your account.', 'success');
+                setTimeout(() => {
+                    hideAuthModal();
+                }, 2000);
+            }
         }
     });
 });

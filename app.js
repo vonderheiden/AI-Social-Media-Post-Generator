@@ -4,22 +4,12 @@ let supabase;
 // Initialize Supabase client with config from server
 async function initSupabase() {
     try {
-        console.log('Fetching Supabase config...');
         const response = await fetch('/api/config');
-        
-        if (!response.ok) {
-            throw new Error(`Config fetch failed: ${response.status}`);
-        }
-        
         const config = await response.json();
-        console.log('Config received:', { url: config.supabaseUrl, hasKey: !!config.supabaseAnonKey });
-        
         supabase = window.supabase.createClient(config.supabaseUrl, config.supabaseAnonKey);
-        console.log('Supabase client created successfully');
     } catch (error) {
         console.error('Failed to initialize Supabase:', error);
         // Fallback for development
-        console.log('Using fallback Supabase config');
         supabase = window.supabase.createClient(
             'https://pkibhlyvjtzikvyjmrdm.supabase.co',
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBraWJobHl2anR6aWt2eWptcmRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQxNDYxNjMsImV4cCI6MjA3OTcyMjE2M30.BAF-zEZSgjW7DSrt4QTGUxH_UtPqq7pVJv4sLYzvF_g'
@@ -58,5 +48,73 @@ function showNotification(message, type = 'info') {
     }, 4000);
 }
 
-// Export supabase for use in other files
-window.getSupabase = () => supabase;
+// Sign In
+const signInForm = document.getElementById('signInForm');
+if (signInForm) {
+    signInForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email,
+            password
+        });
+
+        if (error) {
+            if (error.message.includes('Email not confirmed')) {
+                showNotification('Please confirm your email address before signing in. Check your inbox for the confirmation link.', 'error');
+            } else {
+                showNotification('Error: ' + error.message, 'error');
+            }
+        } else {
+            // Redirect directly to generate page, skipping dashboard
+            window.location.href = 'generate.html';
+        }
+    });
+}
+
+// Sign Up
+const signUpForm = document.getElementById('signUpForm');
+if (signUpForm) {
+    signUpForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        console.log('Attempting signup for:', email);
+
+        const { data, error } = await supabase.auth.signUp({
+            email,
+            password,
+            options: {
+                emailRedirectTo: 'https://ai-social-media-post-generator-tpwg.onrender.com/dashboard.html',
+                data: {
+                    email: email
+                }
+            }
+        });
+
+        console.log('Signup response:', { data, error });
+
+        if (error) {
+            showNotification('Error: ' + error.message, 'error');
+            console.error('Signup error:', error);
+        } else if (data?.user) {
+            if (data.user.identities && data.user.identities.length === 0) {
+                showNotification('This email is already registered. Please sign in instead.', 'info');
+                window.location.href = 'index.html';
+            } else {
+                showNotification('Account created! Please check your email to confirm your account before signing in.', 'success');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            }
+        } else {
+            showNotification('Sign up initiated. Please check your email for confirmation.', 'success');
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2000);
+        }
+    });
+}
